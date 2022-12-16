@@ -20,11 +20,13 @@ class Users extends Controller
                 'cin' => trim($_POST['cin']),
                 'loyal' => 1,
                 'role' => 1,
+                'country' => trim($_POST['country']),
                 'name_err' => '',
                 'birthday_err' => '',
                 'email_err' => '',
                 'password_err' => '',
                 'cin_err' => '',
+                'country_err' => '',
             ];
 
             // Validation Form
@@ -49,13 +51,17 @@ class Users extends Controller
                 $data['birthday_err'] = 'Please enter your birthday';
             }
 
+            if (empty($data['country'])) {
+                $data['country_err'] = 'Please enter your country';
+            }
+
             if (empty($data['password'])) {
                 $data['password_err'] = 'Please enter password';
             } else if (strlen($data['password']) < 6) {
                 $data['password_err'] = 'Password must be at least 6 characters';
             }
 
-            if (empty($data['name_err']) && empty($data['cin_err']) && empty($data['birthday_err']) && empty($data['email_err']) && empty($data['password_err'])) {
+            if (empty($data['name_err']) && empty($data['cin_err']) && empty($data['birthday_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['country_err'])) {
                 // Hashing password
                 $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
                 //die(print_r($data));
@@ -77,11 +83,13 @@ class Users extends Controller
                 'cin' => '',
                 'loyal' => 1,
                 'role' => 1,
+                'country' => '',
                 'name_err' => '',
                 'birthday_err' => '',
                 'email_err' => '',
                 'password_err' => '',
                 'cin_err' => '',
+                'country_err' => '',
             ];
             $this->view('signup');
         }

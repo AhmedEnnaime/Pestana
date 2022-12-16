@@ -30,7 +30,7 @@ class User
     public function signup($data)
     {
         try {
-            $this->db->query("INSERT INTO user (name,birthday,email,password,cin,loyal,role) VALUES(:name, :birthday, :email, :password, :cin, :loyal, :role)");
+            $this->db->query("INSERT INTO user (name,birthday,email,password,cin,loyal,role,country) VALUES(:name, :birthday, :email, :password, :cin, :loyal, :role, :country)");
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':birthday', $data['birthday']);
             $this->db->bind(':email', $data['email']);
@@ -38,6 +38,7 @@ class User
             $this->db->bind(':cin', $data['cin']);
             $this->db->bind(':loyal', $data['loyal']);
             $this->db->bind(':role', $data['role']);
+            $this->db->bind(':country', $data['country']);
             if ($this->db->execute()) {
                 return true;
             } else {
