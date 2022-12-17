@@ -140,6 +140,9 @@ p{
 .layout-horizontal .notification{
 	background-color: #081A51;
 }
+.suite_type{
+	display: none;
+}
  
 .topbar {
 	top: 0;
