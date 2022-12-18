@@ -17,6 +17,8 @@
  			<div class="content-header">
  				<h1>Rooms</h1>
  			</div>
+ 			<?php flash('room_success'); ?>
+ 			<?php flash('room_message'); ?>
  			<div class="col-md-12">
  				<div class="card">
  					<div class="card-header">
@@ -35,7 +37,7 @@
  											<h4 class="modal-title" id="myModalLabel33">Add room </h4>
  											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
  										</div>
- 										<form action="<?php echo URLROOT; ?>/admins/rooms" method="POST">
+ 										<form action="<?php echo URLROOT; ?>/rooms/rooms" method="POST" enctype="multipart/form-data">
  											<div class="modal-body">
  												<label>Num: </label>
  												<div class="form-group">

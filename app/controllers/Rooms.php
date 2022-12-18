@@ -7,6 +7,8 @@ class Rooms extends Controller
     {
         if (!isLoggedIn()) {
             redirect('users/login');
+        } else if ($_SESSION['role'] == 1) {
+            redirect('pages/index');
         }
         $this->roomModel = $this->model('Room');
     }
@@ -64,7 +66,12 @@ class Rooms extends Controller
             if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err']) && empty($data['media_err'])) {
 
                 if ($this->roomModel->add($data)) {
-                    flash('register_success', 'Room added');
+
+                    $file = $_FILES['media']['name'];
+                    $folder = './assets/images/uploads/' . $file;
+                    $fileTmp = $_FILES['media']['tmp_name'];
+                    move_uploaded_file($fileTmp, $folder);
+                    flash('room_success', 'Room added');
                     redirect('rooms/rooms');
                 } else {
                     die("Something went wrong");
@@ -98,7 +105,7 @@ class Rooms extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->roomModel->delete($id)) {
-                flash('room_message', 'Room deleted');
+                flash('room_message', 'Room deleted', 'alert alert-danger');
                 redirect('rooms/rooms');
             } else {
                 die('Something went wrong');

@@ -99,41 +99,29 @@
 
                 <div class="col-md-6">
                     <div class="card">
+                        <?php flash('user_message'); ?>
                         <div class="card-header">
-                            <h4>Recent Messages</h4>
+                            <h4>Clients</h4>
                         </div>
                         <div class="card-body pb-4">
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="assets/images/message/4.jpg">
+                            <?php foreach ($data['users'] as $user) : ?>
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $user->img; ?>">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1"><?php echo $user->name; ?></h5>
+                                        <h6 class="text-muted mb-0"><?php echo $user->country; ?></h6>
+                                    </div>
+                                    <div class="name ms-2">
+                                        <form action="<?php echo URLROOT; ?>/users/delete/<?php echo $user->id; ?>" method="POST">
+                                            <button style="background-color: red;" type="submit" class="btn btn-primary"> <i style="font-size: 20px;" class='bx bx-trash icon'></i></button>
+                                        </form>
+
+                                    </div>
                                 </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Hank Schrader</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="assets/images/message/5.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Dean Winchester</h5>
-                                    <h6 class="text-muted mb-0">@imdean</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="assets/images/message/1.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">John Doe</h5>
-                                    <h6 class="text-muted mb-0">@Doejohn</h6>
-                                </div>
-                            </div>
-                            <div class="px-4">
-                                <button class='btn btn-block btn-xl btn-primary font-bold mt-3'>Start
-                                    Conversation</button>
-                            </div>
+
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

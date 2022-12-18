@@ -17,9 +17,10 @@
 					<div class="auth-logo">
 						<a href="<?php echo URLROOT; ?>"><img class="logo-img" src="<?php echo URLROOT; ?>/assets/images/logo1.png" alt="Logo"></a>
 					</div>
+					<?php flash('user_message'); ?>
 					<h1 class="auth-title">Sign Up.</h1>
 
-					<form action="<?php echo URLROOT; ?>/users/signup" method="POST">
+					<form action="<?php echo URLROOT; ?>/users/signup" method="POST" enctype="multipart/form-data">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input name="name" type="text" class="form-control form-control-xl <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter your name" value="<?php echo $data['name']; ?>">
 							<span class="invalid-feedback"><?php echo $data['name_err'];  ?></span>
@@ -314,6 +315,13 @@
 							<span class="invalid-feedback"><?php echo $data['cin_err'];  ?></span>
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>
+							</div>
+						</div>
+						<div class="form-group position-relative has-icon-left mb-4">
+							<input name="img" type="file" class="form-control form-control-xl <?php echo (!empty($data['img_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter image" value="<?php echo $data['img']; ?>">
+							<span class="invalid-feedback"><?php echo $data['img_err'];  ?></span>
+							<div class="form-control-icon">
+								<i class="bi bi-image"></i>
 							</div>
 						</div>
 						<button type="submit" name="add" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>

@@ -9,10 +9,10 @@
          <ul>
              <li class="nav-item dropdown">
                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <img src="<?php echo URLROOT; ?>/assets/images/avatar/avatar-1.png" alt="">
+                     <img src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $_SESSION['img']; ?>" alt="">
                  </a>
                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
+                     <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
                      <hr class="dropdown-divider">
                      <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout"><i class="fa fa-sign-out-alt  size-icon-1"></i> <span>Log out</span></a>
                  </ul>

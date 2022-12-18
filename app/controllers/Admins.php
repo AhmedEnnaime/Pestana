@@ -7,12 +7,18 @@ class Admins extends Controller
     {
         if (!isLoggedIn()) {
             redirect('users/login');
+        } else if ($_SESSION['role'] == 1) {
+            redirect('pages/index');
         }
-        $this->roomModel = $this->model('Room');
+        $this->userModel = $this->model('User');
     }
 
     public function dashboard()
     {
-        $this->view('dashboard');
+        $users = $this->userModel->getUsers();
+        $data = [
+            'users' => $users,
+        ];
+        $this->view('dashboard', $data);
     }
 }

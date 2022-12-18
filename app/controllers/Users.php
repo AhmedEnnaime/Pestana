@@ -21,12 +21,14 @@ class Users extends Controller
                 'loyal' => 1,
                 'role' => 1,
                 'country' => trim($_POST['country']),
+                'img' => $_FILES['img']['name'],
                 'name_err' => '',
                 'birthday_err' => '',
                 'email_err' => '',
                 'password_err' => '',
                 'cin_err' => '',
                 'country_err' => '',
+                'img_err' => '',
             ];
 
             // Validation Form
@@ -55,17 +57,26 @@ class Users extends Controller
                 $data['country_err'] = 'Please enter your country';
             }
 
+            if (empty($data['img'])) {
+                $data['img_err'] = 'Please enter your image';
+            }
+
             if (empty($data['password'])) {
                 $data['password_err'] = 'Please enter password';
             } else if (strlen($data['password']) < 6) {
                 $data['password_err'] = 'Password must be at least 6 characters';
             }
 
-            if (empty($data['name_err']) && empty($data['cin_err']) && empty($data['birthday_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['country_err'])) {
+
+            if (empty($data['name_err']) && empty($data['cin_err']) && empty($data['birthday_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['country_err']) && empty($data['img_err'])) {
                 // Hashing password
                 $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
                 //die(print_r($data));
                 if ($this->userModel->signup($data)) {
+                    $file = $_FILES['img']['name'];
+                    $folder = './assets/images/uploads/' . $file;
+                    $fileTmp = $_FILES['img']['tmp_name'];
+                    move_uploaded_file($fileTmp, $folder);
                     flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
@@ -84,12 +95,14 @@ class Users extends Controller
                 'loyal' => 1,
                 'role' => 1,
                 'country' => '',
+                'img' => '',
                 'name_err' => '',
                 'birthday_err' => '',
                 'email_err' => '',
                 'password_err' => '',
                 'cin_err' => '',
                 'country_err' => '',
+                'img_err' => '',
             ];
             $this->view('signup');
         }
@@ -97,7 +110,9 @@ class Users extends Controller
 
     public function login()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isLoggedIn()) {
+            redirect('pages/index');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -146,16 +161,16 @@ class Users extends Controller
         }
     }
 
-    public function createUserSession($user)
+    public function profile()
     {
-        $_SESSION['id'] = $user->id;
-        $_SESSION['logged'] = true;
-        $_SESSION['role'] = $user->role;
-        $_SESSION['email'] = $user->email;
-        $_SESSION['name'] = $user->name;
-        redirect('pages/index');
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        } else {
+            $data = [];
+            $this->view('profile', $data);
+        }
     }
-
     public function logout()
     {
         unset($_SESSION['id']);
@@ -164,5 +179,54 @@ class Users extends Controller
         unset($_SESSION['role']);
         session_destroy();
         redirect('users/login');
+    }
+
+    public function deactivate($id)
+    {
+        if (!isLoggedIn()) {
+            redirect('admins/dashboard');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->userModel->delete($id)) {
+                //logout();
+                flash('user_message', 'User deleted', 'alert alert-danger');
+                redirect('users/signup');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('users/profile');
+        }
+    }
+
+
+    public function delete($id)
+    {
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->userModel->delete($id)) {
+                flash('user_message', 'Account deleted', 'alert alert-danger');
+                redirect('admins/dashboard');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('users/profile');
+        }
+    }
+
+
+
+    public function createUserSession($user)
+    {
+        $_SESSION['id'] = $user->id;
+        $_SESSION['logged'] = true;
+        $_SESSION['role'] = $user->role;
+        $_SESSION['email'] = $user->email;
+        $_SESSION['name'] = $user->name;
+        $_SESSION['loyal'] = $user->loyal;
+        $_SESSION['country'] = $user->country;
+        $_SESSION['img'] = $user->img;
+        redirect('pages/index');
     }
 }
