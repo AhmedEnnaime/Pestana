@@ -27,6 +27,15 @@ class User
         }
     }
 
+    public function getUserById($id)
+    {
+        $this->db->query("SELECT * FROM user WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+        return $row;
+    }
+
+
     public function getUsers()
     {
         try {
@@ -90,5 +99,32 @@ class User
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
+    }
+
+    public function update($data)
+    {
+        try {
+            $this->db->query("UPDATE user SET name = :name,email = :email,birthday =:birthday,country = :country,img = :img WHERE id = :id");
+            $this->db->bind(':id', $data['id']);
+            $this->db->bind(':name', $data['name']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':birthday', $data['birthday']);
+            $this->db->bind(':country', $data['country']);
+            $this->db->bind(':img', $data['img']);
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getClientsCount()
+    {
+        $this->db->query("SELECT COUNT(*) as total FROM user WHERE role = 1");
+        $row = $this->db->single();
+        return $row;
     }
 }

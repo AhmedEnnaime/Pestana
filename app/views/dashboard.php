@@ -17,7 +17,7 @@
         <div class="container-fluid dashboard">
             <div class="content-header">
                 <h1>Dashboard</h1>
-                <p></p>
+                <?php flash('update_success'); ?>
             </div>
 
             <div class="row">
@@ -46,7 +46,7 @@
                                     <i class="fas fa-clipboard-list icon-home bg-success text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Orders</p>
+                                    <p>Reservation</p>
                                     <h5>3000</h5>
                                 </div>
                             </div>
@@ -62,8 +62,8 @@
                                     <i class="fas fa-chart-bar  icon-home bg-info text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Sales</p>
-                                    <h5>5500</h5>
+                                    <p>Clients</p>
+                                    <h5><?php echo $data['clients']->total; ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                                     <i class="fas fa-id-card  icon-home bg-warning text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Employes</p>
+                                    <p>Employees</p>
                                     <h5>256</h5>
                                 </div>
                             </div>

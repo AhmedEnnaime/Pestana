@@ -130,7 +130,7 @@
  											<td>
 
  												<!-- Button trigger for login form modal -->
- 												<form action="">
+ 												<form action="<?php echo URLROOT; ?>/rooms/update/<?php echo $room->id; ?>" method="POST">
  													<button type="button" style="width: 75px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inlineForm">
  														Update
  													</button>
@@ -145,7 +145,7 @@
  																<h4 class="modal-title" id="myModalLabel33">Update room </h4>
  																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
  															</div>
- 															<form action="">
+ 															<form action="<?php echo URLROOT; ?>/rooms/update/<?php echo $data['id']; ?>" method="POST" enctype="multipart/form-data">
  																<div class="modal-body">
  																	<label>Num: </label>
  																	<div class="form-group">

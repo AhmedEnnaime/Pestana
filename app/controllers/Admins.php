@@ -16,8 +16,10 @@ class Admins extends Controller
     public function dashboard()
     {
         $users = $this->userModel->getUsers();
+        $clients = $this->userModel->getClientsCount();
         $data = [
             'users' => $users,
+            'clients' => $clients,
         ];
         $this->view('dashboard', $data);
     }

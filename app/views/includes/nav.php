@@ -12,7 +12,7 @@
                      <img src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $_SESSION['img']; ?>" alt="">
                  </a>
                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
+                     <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile/<?php echo $_SESSION['id']; ?>"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
                      <hr class="dropdown-divider">
                      <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout"><i class="fa fa-sign-out-alt  size-icon-1"></i> <span>Log out</span></a>
                  </ul>

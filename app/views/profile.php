@@ -23,35 +23,36 @@
 			<div class="content-header">
 				<h4>Hi, <?php echo $_SESSION['name']; ?>!</h4>
 			</div>
+			<form action="<?php echo URLROOT; ?>/users/profile/<?php echo $data['id']; ?>" method="POST" enctype="multipart/form-data">
+				<div class="row">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex align-items-start align-items-sm-center  ">
+								<img src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $data['img']; ?>" alt="user-avatar" class="d-block rounded" height="100" width="100px" id="uploadedAvatar" />
 
-			<div class="row">
-				<div class="card">
-					<div class="card-body">
-						<div class="d-flex align-items-start align-items-sm-center  ">
-							<img src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $_SESSION['img']; ?>" alt="user-avatar" class="d-block rounded" height="100" width="100px" id="uploadedAvatar" />
-							<div class="button-wrapper">
-								<label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-									<span class="d-none d-sm-block">Upload new photo</span>
-									<i class="bx bx-upload d-block d-sm-none"></i>
-									<input type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg" />
-								</label>
+								<div class="button-wrapper">
+									<label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+										<span class="d-none d-sm-block">Upload new photo</span>
+										<i class="bx bx-upload d-block d-sm-none"></i>
+										<input value="<?php echo $_SESSION['img']; ?>" type="file" id="upload" name="img" class="account-file-input" hidden accept="image/png, image/jpeg" />
+									</label>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="card-body">
-						<form method="POST" accept="my-profile.html">
+						<div class="card-body">
+
 							<div class="row">
 								<div class="mb-3 col-md-6">
 									<label for="firstName" class="form-label">First Name</label>
-									<input class="form-control <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" type="text" id="firstName" name="name" value="<?php echo $_SESSION['name']; ?>" />
+									<input class="form-control <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" type="text" id="firstName" name="name" value="<?php echo $data['name']; ?>" />
 									<span class="invalid-feedback"><?php echo $data['name_err'];  ?></span>
 								</div>
 
 								<div class="mb-3 col-md-6">
 									<label for="lastName" class="form-label">Country</label>
 									<select class="form-control form-control-xl <?php echo (!empty($data['country_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter country" value="<?php echo $data['country']; ?>" id="country" name="country">
-										<option value="<?php echo $_SESSION['country']; ?>"><?php echo $_SESSION['country']; ?></option>
+										<option value="<?php echo $data['country']; ?>"><?php echo $data['country']; ?></option>
 										<option value="AF">Afghanistan</option>
 										<option value="AX">Aland Islands</option>
 										<option value="AL">Albania</option>
@@ -309,8 +310,18 @@
 								</div>
 								<div class="mb-3 col-md-6">
 									<label for="email" class="form-label">E-mail</label>
-									<input class="form-control <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" type="email" id="email" name="email" value="<?php echo $_SESSION['email']; ?>" placeholder="Andree@example.com" />
+									<input class="form-control <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" type="email" id="email" name="email" value="<?php echo $data['email']; ?>" placeholder="Andree@example.com" />
 									<span class="invalid-feedback"><?php echo $data['email_err'];  ?></span>
+								</div>
+								<div class="mb-3 col-md-6">
+									<label for="cin" class="form-label">CIN</label>
+									<input class="form-control <?php echo (!empty($data['cin_err'])) ? 'is-invalid' : ''; ?>" type="text" id="firstName" name="cin" value="<?php echo $data['cin']; ?>" />
+									<span class="invalid-feedback"><?php echo $data['cin_err'];  ?></span>
+								</div>
+								<div class="mb-3 col-md-6">
+									<label for="birthday" class="form-label">Birthday</label>
+									<input class="form-control <?php echo (!empty($data['birthday_err'])) ? 'is-invalid' : ''; ?>" type="date" id="firstName" name="birthday" value="<?php echo $data['birthday']; ?>" />
+									<span class="invalid-feedback"><?php echo $data['birthday_err'];  ?></span>
 								</div>
 								<div class="mb-3 col-md-6">
 									<label for="role" class="form-label">Role</label>
@@ -325,26 +336,26 @@
 									<button type="submit" class="btn btn-primary me-2">Save changes</button>
 									<button type="reset" class="btn btn-outline-secondary">Cancel</button>
 								</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<div class="card">
-				<h5 class="card-header">Delete Account</h5>
-				<div class="card-body">
-					<div class="mb-3 col-12 mb-0">
-						<div class="alert alert-warning">
-							<h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-							<p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-						</div>
-					</div>
-					<form method="POST" action="<?php echo URLROOT; ?>/users/deactivate/<?php echo $_SESSION['id']; ?>">
-						<button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-					</form>
-				</div>
-			</div>
+			</form>
 		</div>
+	</div>
+	</div>
+
+	<div class="card">
+		<h5 class="card-header">Delete Account</h5>
+		<div class="card-body">
+			<div class="mb-3 col-12 mb-0">
+				<div class="alert alert-warning">
+					<h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
+					<p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+				</div>
+			</div>
+			<form method="POST" action="<?php echo URLROOT; ?>/users/deactivate/<?php echo $_SESSION['id']; ?>">
+				<button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+			</form>
+		</div>
+	</div>
+	</div>
 	</div>
 
 
