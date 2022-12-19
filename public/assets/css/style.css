@@ -324,6 +324,42 @@ p{
 	z-index: 9998;
 }
 
+
+/** 4.1 Auth **/
+#auth{
+	height:100vh;
+	overflow-x:hidden;
+	background:#fff;
+}
+#auth #auth-left{
+	background: linear-gradient(90deg,#081A51,#3f5491) ;
+	height:100%;
+}
+#auth #auth-right{
+	padding:5rem 8rem;
+}
+#auth #auth-right .auth-title{
+	font-size:2rem;
+	margin-bottom:1rem;
+}
+#auth #auth-right .auth-subtitle{
+	color:#a8aebb;
+	font-size:1.1rem;
+	line-height:2.1rem;
+}
+#auth #auth-right .auth-logo{
+	margin-bottom:2rem;
+	text-align: center;
+}
+#auth #auth-right .auth-logo img{
+	height:12rem;
+}
+#auth #auth-right p{
+	font-size: 15px;
+}
+@media screen and (max-width:767px){#auth #auth-right{padding:5rem}}
+@media screen and (max-width:576px){#auth #auth-right{padding:5rem 3rem}}
+
 /** 3.4 Card**/
 .card-description{
 	color: #7c8db5!important;
@@ -1197,6 +1233,12 @@ footer .author-footer{
 	border-color: #28a745;
   }
  
+  .btn-lg, .btn-group-lg > .btn {
+	padding: 0.5rem 1rem;
+	font-size: 1.25rem;
+	line-height: 1.5;
+	border-radius: 0.3rem;
+  }
   
   input[type="submit"].btn-block,
   input[type="reset"].btn-block,

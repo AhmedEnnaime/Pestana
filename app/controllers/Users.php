@@ -276,7 +276,7 @@ class Users extends Controller
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->userModel->delete($id)) {
                 //logout();
-                flash('user_message', 'User deleted', 'alert alert-danger');
+                flash('user_message', 'Account deleted', 'alert alert-danger');
                 redirect('users/signup');
             } else {
                 die('Something went wrong');
@@ -292,7 +292,7 @@ class Users extends Controller
             redirect('users/login');
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->userModel->delete($id)) {
-                flash('user_message', 'Account deleted', 'alert alert-danger');
+                flash('user_message', 'User deleted', 'alert alert-danger');
                 redirect('admins/dashboard');
             } else {
                 die('Something went wrong');

@@ -25,7 +25,7 @@
                  <li class="divider"></li>
 
                  <li>
-                     <a href="blank-pages.html">
+                     <a href="<?php echo URLROOT; ?>/employees/add">
                          <i class='bx bxs-meh-blank icon'></i>
                          Employees
                      </a>
