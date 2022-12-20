@@ -1,0 +1,532 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+  body {
+    background: #ffffff;
+    font-family: "Poppins", sans-serif;
+  }
+  html,body, footer{
+
+    overflow-x: hidden;
+  }
+.container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.services,
+.room-suites,
+.upcoming-event,
+.Testimonials,
+.enjoy-deal,
+.partners-head {
+  margin-top: 11%;
+}
+
+.services,
+.enjoy-deal,
+.upcoming-event,
+.room-suites {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.service-head,
+.event-head,
+.room-suites-head,
+.Testimonials-head {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.3rem;
+}
+.event-wrapper,
+.room-suites-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+.service-wrapper {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.box {
+  height: 200px;
+  width: 200px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 20px;
+  padding-top: 52px;
+  margin-bottom: 10px;
+  color: #333;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.box-image {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.box p {
+  text-align: center;
+}
+
+.box:hover {
+  color: #c1a87d;
+  box-shadow: 2px 2px 10px #c1a87d;
+}
+
+.room-suites-wrapper > div {
+  width: 49%;
+  height: 450px;
+}
+.event-wrapper > div {
+  width: 31%;
+  height: 300px;
+  border-radius: 15px;
+  border: 1px solid #d6d2d2;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.event:hover {
+  box-shadow: 2px 2px 10px #c1a87d;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+.suites {
+  border: 1px solid #d6d2d2;
+  border-radius: 15px;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.scale-room-suite:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  box-shadow: 2px 2px 10px #c1a87d;
+}
+.room > div {
+  width: 100%;
+  height: 214px;
+  margin-bottom: 20px;
+  border: 1px solid #d6d2d2;
+  border-radius: 15px;
+  box-sizing: border-box;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.golf-tour {
+  background: url("../images/client_img/home/golf-court-img.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.party-event {
+  background: url("../images/client_img/home/cocktail-image.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.event-conf {
+  background: url("../images/client_img/home/conf-meeting.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.golf-tour,
+.party-event,
+.event-conf,
+.suites,
+.room-1,
+.room-2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.golf-tour p,
+.party-event p,
+.event-conf p,
+.suites p,
+.room-1 p,
+.room-2 p {
+  font-size: 18px;
+  color: white;
+  padding: 20px 10px;
+  width: 277px;
+}
+.suites {
+  background: url("../images/client_img/home/hotel-suites.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.room-1 {
+  background: url("../images/client_img/home/hotel-room1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.room-2 {
+  background: url("../images/client_img/home/hotel-room2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.deal-wrapper .deal-text {
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 24%;
+}
+
+.deal-text > p {
+  line-height: 2;
+}
+
+.subscribe-form {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin-top: 40px;
+}
+.subscribe-form > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.subscribe-form input {
+  border: 0;
+  border-bottom: 1px solid #c9c9c9;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.subscribe-form input::-moz-placeholder {
+  color: gray;
+  opacity: 0.4;
+}
+.subscribe-form input:-ms-input-placeholder {
+  color: gray;
+  opacity: 0.4;
+}
+.subscribe-form input::-ms-input-placeholder {
+  color: gray;
+  opacity: 0.4;
+}
+.subscribe-form input::placeholder {
+  color: gray;
+  opacity: 0.4;
+}
+.subscribe-form button {
+  width: 120px;
+  height: 40px;
+  padding: 7px 15px;
+  font-size: 20px;
+  border: 0;
+  color: white;
+  background: #c1a87d;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.subscribe-form button:hover {
+  background: rgb(180, 136, 60);
+}
+
+.partners-head h2,
+.deal-head h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+.our-partners {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 50px 30px;
+}
+
+.test {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.test-map {
+  width: 68%;
+  height: 400px;
+  background: url("../images/client_img/home/testimonial-map.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-left: 12.5%;
+}
+.map-img5 {
+  display: inline-block;
+  margin-left: 4.2%;
+  margin-top: 30%;
+}
+.map-img2 {
+  margin-left: 50%;
+  display: inline-block;
+}
+.map-img6 {
+  display: block;
+  margin-top: 10px;
+  margin-left: 38.57%;
+}
+.map-img3 {
+  display: inline-block;
+  margin-left: 16.42%;
+}
+.map-img4 {
+  display: inline-block;
+  margin-left: 42.28%;
+}
+
+.test-word {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+  margin: 50px;
+  margin-top: 10px;
+}
+.test-img1 {
+  display: block;
+  margin-left: 200px;
+}
+.test-text {
+  width: 300px;
+  text-align: center;
+  height: 300px;
+  background: url("../images/client_img/home/testimonial-bg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 108px;
+}
+.part-img {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 800px) {
+  .map-img5 {
+    margin-top: 33%;
+  }
+
+  .map-img3 {
+    margin-left: 10.42%;
+  }
+  .map-img4 {
+    display: inline-block;
+    margin-left: 50.28%;
+  }
+}
+@media (max-width: 448px) {
+  .test-text {
+    justify-self: center;
+  }
+  .map-img5 {
+    margin-top: 28%;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .event-wrapper,
+  .room-suites-wrapper,
+  .Testimonials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+  }
+  .services,
+  .room-suites {
+    padding: 20px 0;
+  }
+  .room-suites-wrapper > div,
+  .event-wrapper > div {
+    height: 250px;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .service-wrapper {
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .test {
+    justify-content: center;
+  }
+
+  .test-text {
+    margin-top: 0;
+    width: 300px;
+    text-align: center;
+    height: 300px;
+  }
+  .test-map {
+    width: 100vw;
+    margin-top: -30px;
+  }
+  .test-map img {
+    width: 37.79px;
+    height: 37.88px;
+  }
+  .upcoming-event {
+    padding-top: 214px;
+  }
+  .box {
+    height: 150px;
+    width: 150px;
+    padding-top: 25px;
+    margin-bottom: 30px;
+  }
+  .our-partners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 30px 0;
+    margin: 0 44px;
+  }
+  .enjoy-deal {
+    padding-bottom: 20px;
+  }
+  .deal-wrapper > div {
+    padding-top: 0;
+    padding-bottom: 5px;
+  }
+  .deal-wrapper .deal-text {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0 46px;
+  }
+
+  .deal-head h2 {
+    font-size: 1.3rem;
+    margin-top: 0;
+  }
+  .subscribe-form div {
+    margin-top: 20px;
+  }
+  .subscribe-form input {
+    font-size: 20px;
+  }
+  .subscribe-form button {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 400px) {
+
+  .subscribe-form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .enjoy-deal {
+    display: flex;
+    justify-content: center;
+  }
+  .our-partners > div {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    width: 74%;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  .subscribe-form button {
+    margin-top: 20px;
+  }
+
+  .deal-wrapper .deal-text{
+    width: 100%;
+    transform: translateX(-45px);
+  }
+
+  .test-map{
+    width: 327px;
+    height: 273.18px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .test-map img{
+    width: 27.79px;
+    height: 27.88px;
+  }
+
+
+  .map-img5 {
+    display: inline-block;
+    transform: translate(20px, -5px);
+  }
+  .map-img2 {
+    display: inline-block;
+    transform: translate(30px, -15px);
+  }
+  .map-img6 {
+    display: block;
+    transform: translate(10px, -25px);
+  }
+  .map-img3 {
+    display: inline-block;
+    transform: translate(10px, 15px);
+  }
+  .map-img4 {
+    display: inline-block;
+    transform: translate(25px, 15px);
+  }
+
+
+  .upcoming-event, .room-suites{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .container {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .box{margin-bottom: 20px;}
+}
