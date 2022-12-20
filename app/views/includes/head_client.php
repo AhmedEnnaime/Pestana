@@ -13,4 +13,5 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/footer.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/contact.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/facilities.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/rooms.css">
 </head>

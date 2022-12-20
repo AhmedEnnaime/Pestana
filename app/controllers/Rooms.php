@@ -19,7 +19,7 @@ class Rooms extends Controller
 
             $data = [
                 'num' => trim($_POST['num']),
-                'capacity' => trim($_POST['capacity']),
+                'capacity' => $_POST['capacity'],
                 'price' => trim($_POST['price']),
                 'type' => trim($_POST['type']),
                 'suite_type' => trim($_POST['suite_type']),
@@ -83,7 +83,7 @@ class Rooms extends Controller
                 $this->view('rooms', $data);
             }
         } else {
-            $rooms = $this->roomModel->getRooms();
+            $rooms = $this->roomModel->getAllRooms();
             $data = [
                 'num' => '',
                 'capacity' => '',

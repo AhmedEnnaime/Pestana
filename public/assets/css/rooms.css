@@ -50,14 +50,21 @@ label {
 
 #check-in,
 #check-out,
-#room-number,
+#room-type,
+#suite-type,
 #guests {
-  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  cursor: pointer;
   border: 1px solid #e5e5e5;
   border-radius: 20px;
+  background-color: transparent;
   height: 40px;
   width: 100%;
   text-align: center;
+}
+.suite_type{
+  display: none;
 }
 
 .gallery-container {

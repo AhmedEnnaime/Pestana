@@ -155,9 +155,9 @@
                     <img src="<?php echo URLROOT; ?>/assets/images/client_img/home/map-avatar2.png" class="test-img1" alt="">
                     <div class="test-word">
                         <p>
-                            I really enjoyed my stay at the Parisimo Hotel.
+                            I really enjoyed my stay at the Pestana Hotel.
                             The services were really good and i enjoyed all the facilities available.
-                            I think i would definitely want to stay at this hotel when i am back in Nigeria.
+                            I think i would definitely want to stay at this hotel when i am back in Denmark.
                         </p><br>
                         <p><strong>Yosef Clark</strong></p>
                     </div>

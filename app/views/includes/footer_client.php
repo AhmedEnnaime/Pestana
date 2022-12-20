@@ -70,3 +70,4 @@
 
 <script src="<?php echo URLROOT; ?>/assets/js/nav.main.js"></script>
 <script src="<?php echo URLROOT; ?>/assets/js/contact.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/js/filter.js"></script>

@@ -15,7 +15,7 @@
         <div class="nav__items" id="nav_list">
             <div class="nav__items__links">
                 <a href="<?php echo URLROOT; ?>" class="link">Home</a>
-                <a href="rooms.html" class="link">Rooms</a>
+                <a href="<?php echo URLROOT; ?>/pages/rooms?page=1" class="link">Rooms</a>
                 <a href="<?php echo URLROOT; ?>/pages/facilities" class="link">Facilities</a>
                 <?php if ($_SESSION['logged'] == true && $_SESSION['role'] == 0) { ?>
 

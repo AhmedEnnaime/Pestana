@@ -39,6 +39,16 @@ class Room
         }
     }
 
+    public function getAllRooms()
+    {
+        try {
+            $this->db->query("SELECT * FROM room");
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
     public function add($data)
     {
         try {
@@ -60,10 +70,23 @@ class Room
         }
     }
 
+    public function getRoomsCount()
+    {
+        $this->db->query("SELECT COUNT(*) as total FROM room");
+        $row = $this->db->single();
+        return $row;
+    }
+
     public function getRooms()
     {
+        $rooms = $this->getRoomsCount();
+        @$page = $_GET['page'];
+        $rooms_nb = $rooms->total;
+        $elem_nb = 9;
+        $pages_nb = ceil($rooms_nb / $elem_nb);
+        $debut = ($page - 1) * $elem_nb;
         try {
-            $this->db->query("SELECT * FROM room");
+            $this->db->query("SELECT * FROM room LIMIT " . $debut . "," . $elem_nb . "");
             return $this->db->resultSet();
         } catch (PDOException $ex) {
             echo $ex->getMessage();

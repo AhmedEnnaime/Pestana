@@ -76,7 +76,7 @@
  												</div>
  												<label>Capacity: </label>
  												<div class="form-group">
- 													<input disabled id="capacity" name="capacity" type="number" placeholder="Capacity" class="form-control <?php echo (!empty($data['capacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['capacity']; ?>">
+ 													<input id="capacity" name="capacity" type="number" placeholder="Capacity" class="form-control <?php echo (!empty($data['capacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['capacity']; ?>">
  													<span class="invalid-feedback"><?php echo $data['capacity_err'];  ?></span>
  												</div>
  												<label>Images: </label>

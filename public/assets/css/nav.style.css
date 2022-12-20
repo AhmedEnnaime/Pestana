@@ -362,11 +362,8 @@ margin-top: 5px;
   -o-transform: rotate(-45deg);
 }
 
-
-
-
 #hero{
-    background:  linear-gradient(0deg, rgba(84, 87, 177, 0.3), rgba(84, 87, 177, 0.3)), url('../assets/images/palm-trees-at-night.jpg');
+    background:  linear-gradient(0deg, rgba(84, 87, 177, 0.3), rgba(84, 87, 177, 0.3)), url('../images/client_img/palm-trees-at-night.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

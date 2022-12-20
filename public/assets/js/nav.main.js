@@ -1,11 +1,3 @@
-/**************************************************
-
-       This Js part handles onscroll and onload
-       to ensure the nav bar takes on certain
-       class.
-
-**************************************************/
-
     let navbar_inner = document.getElementById('navbar__inner');
     let nav_div = document.getElementById('nav__div');
     let loader = document.getElementById('loader');
@@ -34,7 +26,6 @@
         nav_div.classList.add("nav__abs");
       }
     }
-
 
     /**************************************************
 
@@ -72,7 +63,6 @@
       }
 
     }
-
 
     /**************************************************
 
