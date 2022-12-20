@@ -8,8 +8,8 @@
     <title><?php echo SITENAME; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Salsa|Montserrat|Segoe UI|Poppins" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Salsa&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0268f71e2c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/nav.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/footer.style.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/main.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/contact.css">
 </head>

@@ -14,11 +14,11 @@
 
         <div class="nav__items" id="nav_list">
             <div class="nav__items__links">
-                <a href="index.html" class="link active">Home</a>
+                <a href="<?php echo URLROOT; ?>" class="link active">Home</a>
                 <a href="rooms.html" class="link">Room & Suites</a>
                 <a href="facilities.html" class="link">Facilities</a>
                 <a href="events.html" class="link">Events</a>
-                <a href="contact.html" class="link">Contact Us</a>
+                <a href="<?php echo URLROOT; ?>/pages/contact" class="link">Contact Us</a>
             </div>
 
             <!-- <div class="profile">

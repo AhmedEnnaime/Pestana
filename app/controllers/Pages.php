@@ -7,11 +7,7 @@ class Pages extends Controller
 
   public function index()
   {
-    $data = [
-      'title' => 'TraversyMVC',
-    ];
-
-    $this->view('index', $data);
+    $this->view('index');
   }
 
   public function about()
@@ -21,5 +17,10 @@ class Pages extends Controller
     ];
 
     $this->view('about', $data);
+  }
+
+  public function contact()
+  {
+    $this->view('contact');
   }
 }
