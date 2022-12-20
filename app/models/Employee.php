@@ -53,4 +53,11 @@ class Employee
             echo $ex->getMessage();
         }
     }
+
+    public function getEmployeesCount()
+    {
+        $this->db->query("SELECT COUNT(*) as total FROM employee");
+        $row = $this->db->single();
+        return $row;
+    }
 }

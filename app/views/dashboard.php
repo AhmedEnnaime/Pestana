@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Employees</p>
-                                    <h5>256</h5>
+                                    <h5><?php echo $data['employees']->total; ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                         <h5 class="mb-1"><?php echo $user->name; ?></h5>
                                         <h6 class="text-muted mb-0"><?php echo $user->country; ?></h6>
                                     </div>
-                                    <div class="name ms-2">
+                                    <div class="name ms-auto">
                                         <form action="<?php echo URLROOT; ?>/users/delete/<?php echo $user->id; ?>" method="POST">
                                             <button style="background-color: red;" type="submit" class="btn btn-primary"> <i style="font-size: 20px;" class='bx bx-trash icon'></i></button>
                                         </form>

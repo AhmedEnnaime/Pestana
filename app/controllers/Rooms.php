@@ -62,7 +62,7 @@ class Rooms extends Controller
             if (empty($data['media'])) {
                 $data['media_err'] = 'Please upload images';
             }
-
+            //die(print_r($data));
             if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err']) && empty($data['media_err'])) {
 
                 if ($this->roomModel->add($data)) {

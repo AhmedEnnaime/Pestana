@@ -44,11 +44,6 @@
  													<input name="num" type="number" placeholder="Room num" class="form-control <?php echo (!empty($data['num_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['num']; ?>">
  													<span class="invalid-feedback"><?php echo $data['num_err'];  ?></span>
  												</div>
- 												<label>Capacity: </label>
- 												<div class="form-group">
- 													<input name="capacity" type="number" placeholder="Capacity" class="form-control <?php echo (!empty($data['capacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['capacity']; ?>">
- 													<span class="invalid-feedback"><?php echo $data['capacity_err'];  ?></span>
- 												</div>
  												<label>Price: </label>
  												<div class="form-group">
  													<input name="price" type="number" placeholder="Price" class="form-control <?php echo (!empty($data['price_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['price']; ?>">
@@ -65,6 +60,7 @@
  													<span class="invalid-feedback"><?php echo $data['type_err'];  ?></span>
 
  												</div>
+
  												<label class="suite_type">Suite type: </label>
  												<div class="form-group">
  													<select class="form-control <?php echo (!empty($data['suite_type_err'])) ? 'is-invalid' : ''; ?> suite_type" name="suite_type" id="suite_type">
@@ -78,9 +74,14 @@
  													<span class="invalid-feedback"><?php echo $data['suite_type_err'];  ?></span>
 
  												</div>
+ 												<label>Capacity: </label>
+ 												<div class="form-group">
+ 													<input disabled id="capacity" name="capacity" type="number" placeholder="Capacity" class="form-control <?php echo (!empty($data['capacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['capacity']; ?>">
+ 													<span class="invalid-feedback"><?php echo $data['capacity_err'];  ?></span>
+ 												</div>
  												<label>Images: </label>
  												<div class="form-group">
- 													<input name="media" type="file" placeholder="Images" class="form-control <?php echo (!empty($data['media_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['media']; ?>" multiple>
+ 													<input name="media[]" type="file" placeholder="Images" class="form-control <?php echo (!empty($data['media_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['media']; ?>" multiple>
  													<span class="invalid-feedback"><?php echo $data['media_err'];  ?></span>
  												</div>
  											</div>
