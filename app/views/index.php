@@ -24,11 +24,33 @@
 
                 </div> -->
             <div id="mobile__links">
-                <a href="<?php echo URLROOT; ?>" class="m__link active">Home</a>
-                <a href="rooms.html" class="m__link">Room & Suites</a>
-                <a href="facilities.html" class="m__link">Facilities</a>
-                <a href="events.html" class="m__link">Dashboard</a>
-                <a href="contact.html" class="m__link">Contact Us</a>
+                <a href="<?php echo URLROOT; ?>" class="m__link">Home</a>
+                <a href="rooms.html" class="m__link">Rooms</a>
+                <a href="<?php echo URLROOT; ?>/pages/facilities" class="m__link">Facilities</a>
+                <?php if ($_SESSION['logged'] == true && $_SESSION['role'] == 0) { ?>
+
+                    <a href="<?php echo URLROOT; ?>/admins/dashboard" class="m__link">Dashboard</a>
+
+                <?php
+                } ?>
+
+                <?php if ($_SESSION['logged'] == true) { ?>
+                    <a href="<?php echo URLROOT; ?>/users/profile/<?php echo $_SESSION['id']; ?>" class="m__link active">Profile</a>
+                <?php
+
+                } ?>
+
+                <a href="<?php echo URLROOT; ?>/pages/contact" class="m__link active">Contact Us</a>
+                <?php if ($_SESSION['logged'] == true) { ?>
+
+                    <a href="<?php echo URLROOT; ?>/users/logout" class="m__link active">Log out</a>
+
+                <?php
+                } else { ?>
+                    <a href="<?php echo URLROOT; ?>/users/login" class="m__link active">Login</a>
+                <?php
+
+                } ?>
 
             </div>
         </div>

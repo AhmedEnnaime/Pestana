@@ -12,4 +12,5 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/nav.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/footer.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/contact.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/facilities.css">
 </head>

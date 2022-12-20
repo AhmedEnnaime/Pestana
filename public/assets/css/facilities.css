@@ -1,0 +1,423 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.d-flex {
+    display: flex;
+}
+
+main{
+  position: relative;
+  top: 87px;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.page-title {
+    margin: 60px;
+    margin-top: 150px
+}
+
+.page-title h1 {
+    margin-bottom: 15px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+
+
+.page-title p {
+    width: 68%;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 20px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.facility {
+    height: 350px;
+    width: 350px;
+    margin: 30px 0;
+    padding: 300px 10px 0 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    filter: grayscale(100%);
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+#facilities .d-flex {
+         flex-wrap: wrap;
+         display: flex;
+         justify-content: space-evenly;
+    }
+
+
+.facility:hover {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transition: 2s;
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+    filter: grayscale(0%);
+}
+
+.facility p {
+    color: #fff;
+    font-size: 23px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0 0 10px 10px;
+}
+
+.spa {
+    background: url('../images/client_img/facilities/spa.png') no-repeat;
+    background-size: contain;
+}
+
+.club {
+    background: url('../images/client_img/facilities/club.png') no-repeat;
+    background-size: contain;
+}
+
+.events {
+    padding: 270px 0 24px 25px;
+    background: url('../images/client_img/facilities/events.png') no-repeat;
+    background-size: contain;
+}
+
+.beauty {
+    background: url('../images/client_img/facilities/saloon.png') no-repeat;
+    background-size: contain;
+}
+
+.restaurant {
+    background: url('../images/client_img/facilities/restaurant.png') no-repeat;
+    background-size: contain;
+}
+
+.gym {
+    background: url('../images/client_img/facilities/gym.png') no-repeat;
+    background-size: contain;
+}
+
+.icon-box {
+    border: 1px solid #EEEEEE;
+    border-radius: 20px;
+    height: 150px;
+    width: 150px;
+    padding-top: 40px;
+    cursor: pointer;
+}
+
+.icon-box:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transition: 2s;
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+}
+
+.main-d-flex {
+    display: flex;
+}
+
+#facilities-icon {
+    margin-top: 60px;
+    margin-bottom: 200px;
+}
+
+.icon-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+@media screen and (min-width:920px)  {
+    .facility {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width:720px) {
+
+
+    .facility {
+        width: 320px;
+        padding: 270px 0 24px 25px;
+    }
+
+    .events {
+        padding: 250px 0 24px 25px;
+    }
+
+     #facilities .d-flex {
+         flex-wrap: wrap;
+    }
+
+    #facilities-icon .icon-box{
+        flex-wrap: wrap;
+    }
+    .icon-section {
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .page-title p {
+        width: 70%;
+        font-size: 18px;
+    }
+
+    .icon-box {
+        width: 170px;
+        height: 160px;
+        margin-bottom: 30px;
+    }
+}
+
+/* @media screen and (min-width:600px)       {
+    .facility {
+        width: 30px;
+    }
+} */
+
+@media screen and (max-width:600px) {
+
+    .container {
+        width: 88%;
+    }
+
+    .page-title {
+        margin: 150px 0 0 0;
+    }
+
+    .page-title p {
+        width: 90%;
+        font-size: 15px;
+        text-align: auto;
+    }
+    .facility {
+        margin-bottom: 10px;
+        width: 250px;
+        padding-top: 250px;
+        height: 200px;
+    }
+
+   #facilities .d-flex {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main {
+        top: 0;
+    }
+
+    #facilities-icon .icon-box{
+        flex-wrap: wrap;
+    }
+
+    .icon-section {
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+    }
+    .icon-box {
+        margin-bottom: 40px;
+    }
+}
+
+
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+
+  .page-title p.text-center{
+    width: 100%;
+  }
+
+  #facilities .d-flex{
+    flex-direction: row;
+    margin-left:25px;
+  }
+
+
+  .facility{
+    width: 200px;
+    height: 170px;
+    padding: 20px 20px 0 0;
+    margin: 15px 0;
+
+  }
+
+
+    .icon-section{
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 200px);
+      grid-template-rows: repeat(2,150px);
+      grid-column-gap: 10px;
+      grid-row-gap: 40px;
+      padding: 20px 100px;
+      margin-left: 22px;
+    }
+
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .page-title p.text-center{
+    width: 100%;
+  }
+
+#facilities .d-flex{
+  flex-direction: row;
+  margin-left:90px;
+}
+
+.facility{
+  width: 300px;
+  height: 200px;
+  padding: 20px 20px 0 0;
+  margin: 15px 0;
+
+}
+
+.facility p{
+  font-size: 1.2rem;
+}
+
+
+.icon-section .icon-box{
+  width: 180px;
+  height: 150px;
+  margin-bottom: 40px;
+}
+
+}
+
+
+
+
+/***********
+
+iPad pro
+*********/
+
+/* Portrait */
+@media only screen
+  and (min-width: 1024px)
+  and (max-height: 1366px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+
+    #facilities .d-flex{
+      margin-left:35px;
+    }
+
+    .facility{
+      width: 300px;
+      height: 250px;
+      padding: 20px 20px 0 0;
+      margin: 25px 0;
+
+    }
+
+
+      .icon-section{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
+        grid-template-rows: repeat(2,150px);
+        grid-column-gap: 10px;
+        grid-row-gap: 40px;
+        padding: 20px 100px;
+        margin-left: 5px;
+      }
+
+  }
+
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+  #facilities .d-flex{
+    margin-left:40px;
+  }
+
+  .facility{
+    width: 300px;
+    height: 250px;
+    padding: 20px 20px 0 0;
+    margin: 15px 0;
+
+  }
+
+  .icon-section{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(2,150px);
+    grid-column-gap: 10px;
+    grid-row-gap: 80px;
+    padding: 20px 100px;
+  }
+
+}
+@media screen and (min-width:1100px){
+  .d-flex{
+    width: 1200px;
+    margin: 0 auto;
+  }
+}

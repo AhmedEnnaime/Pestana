@@ -33,6 +33,14 @@
                  <li class="divider"></li>
 
                  <li>
+                     <a href="<?php echo URLROOT; ?>">
+                         <i class='bx bx-home-alt-2 icon'></i>
+                         Client side
+                     </a>
+                 </li>
+                 <li class="divider"></li>
+
+                 <li>
                      <a href="<?php echo URLROOT; ?>/users/profile/<?php echo $_SESSION['id']; ?>">
                          <i class='bx bxs-user icon'></i>
                          Profile
