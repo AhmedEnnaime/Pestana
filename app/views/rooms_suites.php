@@ -112,6 +112,7 @@
                 <div class="booking">
                   <p class="room__type"><?php echo $room->type; ?></p>
                   <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="POST">
+
                     <input type="submit" class="booking-btn" value="Book">
                   </form>
                 </div>

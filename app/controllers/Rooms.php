@@ -197,16 +197,22 @@ class Rooms extends Controller
 
     public function book($id)
     {
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $room = $this->roomModel->getRoomById($id);
             $data = [
                 'id' => $id,
+                'room' => $room,
             ];
 
             $this->view('book', $data);
         } else {
-            $this->view('book');
+            $room = $this->roomModel->getRoomById($id);
+            $data = [
+                'room' => $room,
+            ];
+            $this->view('book', $data);
         }
     }
 }

@@ -86,7 +86,7 @@ class Room
         $pages_nb = ceil($rooms_nb / $elem_nb);
         $debut = ($page - 1) * $elem_nb;
         try {
-            $this->db->query("SELECT * FROM room LIMIT " . $debut . "," . $elem_nb . "");
+            $this->db->query("SELECT * FROM room WHERE reserved = 0 LIMIT " . $debut . "," . $elem_nb . "");
             return $this->db->resultSet();
         } catch (PDOException $ex) {
             echo $ex->getMessage();
