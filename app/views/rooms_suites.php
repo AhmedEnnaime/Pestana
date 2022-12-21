@@ -109,8 +109,15 @@
             <div class="room">
               <img src="<?php echo URLROOT; ?>/assets/images/client_img//bed-bedroom-1.jpg" alt="">
               <div class="room-text-container">
-                <p class="room__type"><?php echo $room->type; ?></p>
+                <div class="booking">
+                  <p class="room__type"><?php echo $room->type; ?></p>
+                  <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="POST">
+                    <input type="submit" class="booking-btn" value="Book">
+                  </form>
+                </div>
+
                 <p class="room__price">$<?php echo $room->price; ?><small>/night</small></p>
+
               </div>
             </div>
 

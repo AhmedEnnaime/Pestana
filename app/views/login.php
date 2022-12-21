@@ -17,6 +17,7 @@
 						<a href="<?php echo URLROOT; ?>"><img src="<?php echo URLROOT; ?>/assets/images/logo1.png" alt="Logo"></a>
 					</div>
 					<?php flash('register_success'); ?>
+					<?php flash('user_message'); ?>
 					<h1 class="auth-title">Log in.</h1>
 
 					<form action="<?php echo URLROOT; ?>/users/login" method="POST">

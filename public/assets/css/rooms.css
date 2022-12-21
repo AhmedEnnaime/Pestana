@@ -67,6 +67,19 @@ label {
   display: none;
 }
 
+.booking{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.booking-btn{
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .gallery-container {
   display: flex;
   justify-content: space-between;

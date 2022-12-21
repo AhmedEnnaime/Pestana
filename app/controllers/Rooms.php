@@ -194,4 +194,19 @@ class Rooms extends Controller
             $this->view('rooms', $data);
         }
     }
+
+    public function book($id)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data = [
+                'id' => $id,
+            ];
+
+            $this->view('book', $data);
+        } else {
+            $this->view('book');
+        }
+    }
 }

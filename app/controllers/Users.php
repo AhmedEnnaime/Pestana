@@ -275,9 +275,8 @@ class Users extends Controller
             redirect('admins/dashboard');
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->userModel->delete($id)) {
-                //logout();
                 flash('user_message', 'Account deleted', 'alert alert-danger');
-                redirect('users/signup');
+                $this->logout();
             } else {
                 die('Something went wrong');
             }
