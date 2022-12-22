@@ -79,8 +79,9 @@
                     <img height="100%" width="100%" class="booking-img" src="<?php echo URLROOT; ?>/assets/images/client_img/bed-bedroom-1.jpg" alt="Booking Image">
                 </div>
                 <div class="booking-form">
-                    <form id="booking-form">
+                    <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $data['room']->id; ?>" id="booking-form" method="POST">
                         <h2>Book your room or suite!</h2>
+                        <?php print_r($data['room']->id); ?>
                         <div class="form-group form-input">
                             <label for="deut_date">Debut date</label>
                             <input type="date" name="debut_date" class="booking-date" id="debut_date" value="" required />
@@ -98,19 +99,19 @@
                                 <label class="label-radio"> Select how many people are with you</label>
                                 <div class="radio-item-list">
                                     <span class="radio-item">
-                                        <input type="radio" name="number_people" class="people_num" value="3" id="number_people_3" />
+                                        <input type="radio" name="persons_num" class="people_num" value="3" id="number_people_3" />
                                         <label for="number_people_3">3</label>
                                     </span>
                                     <span class="radio-item">
-                                        <input type="radio" name="number_people" class="people_num" value="4" id="number_people_4" />
+                                        <input type="radio" name="persons_num" class="people_num" value="4" id="number_people_4" />
                                         <label for="number_people_4">4</label>
                                     </span>
                                     <span class="radio-item">
-                                        <input type="radio" name="number_people" class="people_num" value="5" id="number_people_5" />
+                                        <input type="radio" name="persons_num" class="people_num" value="5" id="number_people_5" />
                                         <label for="number_people_5">5</label>
                                     </span>
                                     <span class="radio-item">
-                                        <input type="radio" name="number_people" class="people_num" value="6" id="number_people_6" />
+                                        <input type="radio" name="persons_num" class="people_num" value="6" id="number_people_6" />
                                         <label for="number_people_6">6</label>
                                     </span>
 
@@ -121,12 +122,12 @@
                             <div class="guests guests1">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 1</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" required />
+                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 1</label>
-                                    <input type="date" name="guest_birthday" value="" required />
+                                    <input type="date" name="guest_birthday" value="" />
 
                                 </div>
                             </div>
@@ -134,12 +135,12 @@
                             <div class="guests guests2">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 2</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" required />
+                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 2</label>
-                                    <input type="date" name="guest_birthday" value="" required />
+                                    <input type="date" name="guest_birthday" value="" />
 
                                 </div>
                             </div>
@@ -147,12 +148,12 @@
                             <div class="guests guests3">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 3</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" required />
+                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 3</label>
-                                    <input type="date" name="guest_birthday" value="" required />
+                                    <input type="date" name="guest_birthday" value="" />
 
                                 </div>
                             </div>
@@ -160,12 +161,12 @@
                             <div class="guests guests4">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 4</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" required />
+                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 4</label>
-                                    <input type="date" name="guest_birthday" value="" required />
+                                    <input type="date" name="guest_birthday" value="" />
 
                                 </div>
                             </div>
@@ -173,12 +174,12 @@
                             <div class="guests guests5">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 5</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" required />
+                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 5</label>
-                                    <input type="date" name="guest_birthday" value="" required />
+                                    <input type="date" name="guest_birthday" value="" />
 
                                 </div>
                             </div>
@@ -186,12 +187,12 @@
                             <div class="guests guests6">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 6</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" required />
+                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 6</label>
-                                    <input type="date" name="guest_birthday" value="" required />
+                                    <input type="date" name="guest_birthday" value="" />
 
                                 </div>
                             </div>
@@ -200,7 +201,7 @@
                         } ?>
 
                         <div class="form-submit">
-                            <input type="submit" value="Book now" class="submit" id="submit" name="submit" />
+                            <input type="submit" value="Book now" class="submit" id="submit" name="book" />
                         </div>
                     </form>
                 </div>

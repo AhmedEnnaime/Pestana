@@ -129,4 +129,27 @@ class Room
             echo $ex->getMessage();
         }
     }
+
+    public function book($data)
+    {
+        try {
+            $this->db->query("INSERT INTO reservation (user_id,room_id,debut_date,final_date,persons_num,total) VALUES(:user_id, :room_id, :debut_date, :final_date, :persons_num, :total)");
+            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':room_id', $data['room_id']);
+            $this->db->bind(':debut_date', $data['debut_date']);
+            $this->db->bind(':final_date', $data['final_date']);
+            $this->db->bind(':persons_num', $data['persons_num']);
+            $this->db->bind(':total', $data['total']);
+            if ($this->db->execute()) {
+                $this->db->query("UPDATE room SET reserved = 1 WHERE id = :id");
+                $this->db->bind(':id', $data['room_id']);
+                $this->db->execute();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

@@ -62,6 +62,7 @@
 
   <main>
     <div id="container">
+      <?php flash('reservation_success'); ?>
       <div class="room-filter">
         <div class="search">
           <span>Filter Search</span>
@@ -111,7 +112,7 @@
               <div class="room-text-container">
                 <div class="booking">
                   <p class="room__type"><?php echo $room->type; ?></p>
-                  <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="POST">
+                  <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="GET">
 
                     <input type="submit" class="booking-btn" value="Book">
                   </form>

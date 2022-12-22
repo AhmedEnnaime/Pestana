@@ -122,7 +122,7 @@ class Rooms extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $data = [
+            $data_update = [
                 'id' => $id,
                 'num' => trim($_POST['num']),
                 'capacity' => trim($_POST['capacity']),
@@ -139,45 +139,46 @@ class Rooms extends Controller
 
             // Validation Form
 
-            if (empty($data['num'])) {
-                $data['num_err'] = 'Please enter num';
+            if (empty($data_update['num'])) {
+                $data_update['num_err'] = 'Please enter num';
             }
 
-            if (empty($data['capacity'])) {
-                $data['capacity_err'] = 'Please enter capacity';
+            if (empty($data_update['capacity'])) {
+                $data_update['capacity_err'] = 'Please enter capacity';
             }
 
-            if (empty($data['price'])) {
-                $data['price_err'] = 'Please enter price';
+            if (empty($data_update['price'])) {
+                $data_update['price_err'] = 'Please enter price';
             }
 
-            if (empty($data['type'])) {
-                $data['type_err'] = 'Please enter your type';
+            if (empty($data_update['type'])) {
+                $data_update['type_err'] = 'Please enter your type';
             }
 
-            if (empty($data['suite_type'])) {
-                $data['suite_type_err'] = 'Please enter your suite type';
+            if (empty($data_update['suite_type'])) {
+                $data_update['suite_type_err'] = 'Please enter your suite type';
             }
 
-            if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err'])) {
+            if (empty($data_update['num_err']) && empty($data_update['capacity_err']) && empty($data_update['price_err']) && empty($data_update['type_err'])) {
 
-                if ($this->roomModel->update($data)) {
+                if ($this->roomModel->update($data_update)) {
                     flash('update_success', 'Room updated');
                     redirect('rooms/rooms');
                 } else {
                     die("Something went wrong");
                 }
             } else {
-                $this->view('rooms', $data);
+                $this->view('rooms', $data_update);
             }
-        } else {
+        } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $room = $this->roomModel->getRoomById($id);
 
             if ($room->id != $id) {
                 redirect('rooms/rooms');
             }
 
-            $data = [
+
+            $data_update = [
                 'id' => $id,
                 'num' => $room->num,
                 'capacity' => $room->capacity,
@@ -191,6 +192,25 @@ class Rooms extends Controller
                 'type_err' => '',
                 'suite_type_err' => '',
             ];
+
+            $rooms = $this->roomModel->getAllRooms();
+            $data = [
+                'num' => '',
+                'capacity' => '',
+                'price' => '',
+                'type' => '',
+                'suite_type' => '',
+                'reserved' => 0,
+                'media' => '',
+                'num_err' => '',
+                'capacity_err' => '',
+                'price_err' => '',
+                'type_err' => '',
+                'suite_type_err' => '',
+                'media_err' => '',
+                'rooms' => $rooms,
+            ];
+
             $this->view('rooms', $data);
         }
     }
@@ -200,15 +220,63 @@ class Rooms extends Controller
         if (!isLoggedIn()) {
             redirect('users/login');
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             $room = $this->roomModel->getRoomById($id);
-            $data = [
-                'id' => $id,
-                'room' => $room,
-            ];
+            $secs = strtotime($_POST['final_date']) - strtotime($_POST['debut_date']);
+            $nights = $secs / 86400;
+            //die(print($nights));
+            $total = $nights * $room->price;
+            if ($room->type == 'suite') {
+                $data = [
+                    'id' => $id,
+                    'room' => $room,
+                    'user_id' => $_SESSION['id'],
+                    'room_id' => $id,
+                    'debut_date' => $_POST['debut_date'],
+                    'final_date' => $_POST['final_date'],
+                    'persons_num' => $_POST['persons_num'],
+                    'total' => $total,
+                    'debut_date_err' => '',
+                    'final_date_err' => '',
+                    'persons_num_err' => '',
+                ];
+
+                if ($this->roomModel->book($data)) {
+                    flash('reservation_success', 'Room booked');
+                    redirect('pages/rooms?page=1');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                $data = [
+                    'id' => $id,
+                    'room' => $room,
+                    'user_id' => $_SESSION['id'],
+                    'room_id' => $id,
+                    'debut_date' => $_POST['debut_date'],
+                    'final_date' => $_POST['final_date'],
+                    'total' => $total,
+                    'debut_date_err' => '',
+                    'final_date_err' => '',
+                    'persons_num_err' => '',
+                ];
+
+                if ($this->roomModel->book($data)) {
+                    flash('reservation_success', 'Room booked');
+                    redirect('pages/rooms?page=1');
+                } else {
+                    die('Something went wrong');
+                }
+            }
+
+
 
             $this->view('book', $data);
         } else {
+            //die(print('cewce'));
             $room = $this->roomModel->getRoomById($id);
+            $nights = $_POST['debut_date'] - $_POST['final_date'];
+            //die(print($nights));
             $data = [
                 'room' => $room,
             ];

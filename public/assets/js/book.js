@@ -22,13 +22,25 @@ for(let nbr_people of people_num){
             guests5.style.display = 'none';
             guests6.style.display = 'none';
         }else if(e.target.value == 4){
+            guests1.style.display = 'block';
+            guests2.style.display = 'block';
+            guests3.style.display = 'block';
             guests4.style.display = 'block';
             guests5.style.display = 'none';
             guests6.style.display = 'none';
         }else if(e.target.value == 5){
+            guests1.style.display = 'block';
+            guests2.style.display = 'block';
+            guests3.style.display = 'block';
+            guests4.style.display = 'block';
             guests5.style.display = 'block';
-            guests6.style.display = 'block';
+            guests6.style.display = 'none';
         }else if(e.target.value == 6){
+            guests1.style.display = 'block';
+            guests2.style.display = 'block';
+            guests3.style.display = 'block';
+            guests4.style.display = 'block';
+            guests5.style.display = 'block';
             guests6.style.display = 'block';
         }
     })
