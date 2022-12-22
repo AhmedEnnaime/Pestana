@@ -81,7 +81,6 @@
                 <div class="booking-form">
                     <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $data['room']->id; ?>" id="booking-form" method="POST">
                         <h2>Book your room or suite!</h2>
-                        <?php print_r($data['room']->id); ?>
                         <div class="form-group form-input">
                             <label for="deut_date">Debut date</label>
                             <input type="date" name="debut_date" class="booking-date" id="debut_date" value="" required />

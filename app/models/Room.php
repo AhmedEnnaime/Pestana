@@ -152,4 +152,80 @@ class Room
             echo $ex->getMessage();
         }
     }
+
+    public function getReservedRooms()
+    {
+        $this->db->query("SELECT COUNT(*) as total FROM reservation");
+        $row = $this->db->single();
+        return $row;
+    }
+
+    public function getReservations()
+    {
+        try {
+            $this->db->query("SELECT reservation.id,user.name,room.num,room.type,reservation.debut_date,reservation.final_date,reservation.total FROM `reservation` JOIN user ON user.id = reservation.user_id JOIN room ON reservation.room_id = room.id;");
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getEarnings()
+    {
+        try {
+            $this->db->query("SELECT SUM(reservation.total) as earnings FROM reservation INNER JOIN room WHERE room.id = reservation.room_id;");
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getReservationById($id)
+    {
+        try {
+            $this->db->query("SELECT * FROM reservation WHERE id = :id");
+            $this->db->bind(':id', $id);
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function deleteReservation($data)
+    {
+        try {
+            $this->db->query("DELETE FROM reservation WHERE id = :id");
+            $this->db->bind(":id", $data['id']);
+            if ($this->db->execute()) {
+                $this->db->query("UPDATE room SET reserved = 0 WHERE id = :id");
+                $this->db->bind(':id', $data['room_id']);
+                $this->db->execute();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function freeRoom($data)
+    {
+        try {
+            $today = date('Y-m-d');
+            $reservation = $this->getReservationById($data['id']);
+            if ($today >= $reservation->final_date) {
+                $this->db->query("UPDATE room SET reserved = 0 WHERE id = :id");
+                $this->db->bind(':id', $data['room_id']);
+                $this->db->execute();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

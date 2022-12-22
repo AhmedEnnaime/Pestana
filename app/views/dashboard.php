@@ -30,8 +30,8 @@
                                     <i class="fas fa-inbox icon-home bg-primary text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Revenue</p>
-                                    <h5>$65</h5>
+                                    <p>Earnings</p>
+                                    <h5>$<?php echo $data['earnings']->earnings; ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Reservation</p>
-                                    <h5>3000</h5>
+                                    <h5><?php echo $data['reservation']->total; ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -128,6 +128,7 @@
 
                 <div class="col-md-12">
                     <div class="card">
+                        <?php flash('reservation_message'); ?>
                         <div class="card-header">
                             <h4>Reservations</h4>
                         </div>
@@ -136,55 +137,35 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Order Id</th>
-                                            <th scope="col">Billing Name</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Total</th>
-                                            <th scope="col">Payment Status</th>
-                                            <th scope="col">Payment Method</th>
-                                            <th scope="col">View Details</th>
+                                            <th scope="col">Client</th>
+                                            <th scope="col">Room num</th>
+                                            <th scope="col">Room type</th>
+                                            <th scope="col">Entry date</th>
+                                            <th scope="col">Leave date</th>
+                                            <th scope="col">Reservation price</th>
+                                            <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">#SK2548 </th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td><span class="text-success">Paid</span></td>
-                                            <td>Mastercard</td>
-                                            <td><button class="btn btn-primary">View Details</button></td>
-                                        </tr>
 
-                                        <tr>
-                                            <th scope="row">#SK2548 </th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td><span class="text-success">Paid</span></td>
-                                            <td>Visa</td>
-                                            <td><button class="btn btn-primary">View Details</button></td>
-                                        </tr>
+                                        <?php foreach ($data['reservation_info'] as $reservation_info) : ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $reservation_info->name; ?> </th>
+                                                <td><?php echo $reservation_info->num; ?></td>
+                                                <td><?php echo $reservation_info->type; ?></td>
+                                                <td><?php echo $reservation_info->debut_date; ?></td>
+                                                <td><?php echo $reservation_info->final_date; ?></td>
+                                                <td>$<?php echo $reservation_info->total; ?></td>
+                                                <td>
+                                                    <form action="<?php echo URLROOT; ?>/rooms/deleteReservation/<?php echo $reservation_info->id; ?>" method="POST">
+                                                        <button type="submit" style="background-color: red;" class="btn btn-primary">Delete</button>
+                                                    </form>
+                                                </td>
 
-                                        <tr>
-                                            <th scope="row">#SK2548 </th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td><span class="text-danger">Chargeback</span></td>
-                                            <td>Paypal</td>
-                                            <td><button class="btn btn-primary">View Details</button></td>
-                                        </tr>
+                                            </tr>
 
-                                        <tr>
-                                            <th scope="row">#SK2548 </th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td><span class="text-warning">Refund</span></td>
-                                            <td>Visa</td>
-                                            <td><button class="btn btn-primary">View Details</button></td>
-                                        </tr>
+                                        <?php endforeach; ?>
+
                                     </tbody>
                                 </table>
                             </div>

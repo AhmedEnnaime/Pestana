@@ -177,22 +177,6 @@ class Rooms extends Controller
                 redirect('rooms/rooms');
             }
 
-
-            $data_update = [
-                'id' => $id,
-                'num' => $room->num,
-                'capacity' => $room->capacity,
-                'price' => $room->price,
-                'type' => $room->type,
-                'suite_type' => $room->suite_type,
-                'reserved' => 0,
-                'num_err' => '',
-                'capacity_err' => '',
-                'price_err' => '',
-                'type_err' => '',
-                'suite_type_err' => '',
-            ];
-
             $rooms = $this->roomModel->getAllRooms();
             $data = [
                 'num' => '',
@@ -211,6 +195,22 @@ class Rooms extends Controller
                 'rooms' => $rooms,
             ];
 
+
+            $data_update = [
+                'id' => $id,
+                'num' => $room->num,
+                'capacity' => $room->capacity,
+                'price' => $room->price,
+                'type' => $room->type,
+                'suite_type' => $room->suite_type,
+                'reserved' => 0,
+                'num_err' => '',
+                'capacity_err' => '',
+                'price_err' => '',
+                'type_err' => '',
+                'suite_type_err' => '',
+            ];
+            $_SESSION['data'] = $data_update;
             $this->view('rooms', $data);
         }
     }
@@ -281,6 +281,27 @@ class Rooms extends Controller
                 'room' => $room,
             ];
             $this->view('book', $data);
+        }
+    }
+
+    public function deleteReservation($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $reservation = $this->roomModel->getReservationById($id);
+            $data = [
+                'id' => $id,
+                'room_id' => $reservation->room_id,
+            ];
+
+            if ($this->roomModel->deleteReservation($data)) {
+                flash('reservation_message', 'Reservation deleted', 'alert alert-danger');
+                redirect('admins/dashboard');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('admins/dashboard');
         }
     }
 }

@@ -23,7 +23,6 @@
  				<div class="card">
  					<div class="card-header">
  						<h4>Rooms available</h4>
-
  						<div class="form-group">
  							<!-- Button trigger for login form modal -->
  							<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#inlineForm">
@@ -138,7 +137,6 @@
  													</button>
 
  												</form>
-
 
  												<!--login form Modal -->
  												<div class="modal fade text-left" id="inlineForm1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
