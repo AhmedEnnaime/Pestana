@@ -228,4 +228,67 @@ class Room
             echo $ex->getMessage();
         }
     }
+
+    public function getSingleRoomsCount()
+    {
+        try {
+            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'single'");
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getDoubleRoomsCount()
+    {
+        try {
+            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'double'");
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getSuitesCount()
+    {
+        try {
+            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'suite'");
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getSingleRooms()
+    {
+        try {
+            $this->db->query("SELECT * FROM room WHERE type = 'single' AND reserved = 0");
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getDoubleRooms()
+    {
+        try {
+            $this->db->query("SELECT * FROM room WHERE type = 'double' AND reserved = 0");
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getSuites()
+    {
+        try {
+            $this->db->query("SELECT * FROM room WHERE type = 'suite' AND reserved = 0");
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

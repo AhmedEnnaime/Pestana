@@ -116,14 +116,21 @@
             </div>
             <div class="room-suites-wrapper">
                 <div class="suites scale-room-suite">
-                    <p>Suites</p>
+                    <a href="<?php echo URLROOT; ?>/pages/Suites?page=1">
+                        <p>Suites</p>
+                    </a>
                 </div>
                 <div class="room">
                     <div class="room-1 scale-room-suite">
-                        <p>Double rooms</p>
+                        <a href="<?php echo URLROOT; ?>/pages/DoubleRooms?page=1">
+                            <p>Double rooms</p>
+                        </a>
                     </div>
                     <div class="room-2 scale-room-suite">
-                        <p>Single rooms</p>
+                        <a href="<?php echo URLROOT; ?>/pages/SingleRooms?page=1">
+                            <p>Single rooms</p>
+                        </a>
+
                     </div>
                 </div>
             </div>
