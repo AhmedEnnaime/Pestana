@@ -7,8 +7,6 @@ class Rooms extends Controller
     {
         if (!isLoggedIn()) {
             redirect('users/login');
-        } else if ($_SESSION['role'] == 1) {
-            redirect('pages/index');
         }
         $this->roomModel = $this->model('Room');
     }
@@ -224,7 +222,6 @@ class Rooms extends Controller
             $room = $this->roomModel->getRoomById($id);
             $secs = strtotime($_POST['final_date']) - strtotime($_POST['debut_date']);
             $nights = $secs / 86400;
-            //die(print($nights));
             $total = $nights * $room->price;
             if ($room->type == 'suite') {
                 $data = [
@@ -269,14 +266,10 @@ class Rooms extends Controller
                 }
             }
 
-
-
             $this->view('book', $data);
         } else {
-            //die(print('cewce'));
             $room = $this->roomModel->getRoomById($id);
             $nights = $_POST['debut_date'] - $_POST['final_date'];
-            //die(print($nights));
             $data = [
                 'room' => $room,
             ];

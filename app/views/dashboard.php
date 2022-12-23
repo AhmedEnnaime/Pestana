@@ -6,6 +6,7 @@
 
     <?php require APPROOT . '/views/includes/nav.php'; ?>
     <?php require APPROOT . '/views/includes/sidebar.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- End Sidebar-->
 
 
@@ -92,7 +93,40 @@
                         <div class="card-header">
                         </div>
                         <div class="card-body">
-                            <div id="columnchart"></div>
+                            <div id="columnchart">
+                                <div style="width: 500px;">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                                <script>
+                                    <?php
+                                    foreach ($data['clientsCountry'] as $clientsStats) {
+                                        $countr[] = $clientsStats->country;
+                                        $clientsnum[] =  $clientsStats->clients;
+                                    }
+                                    ?>
+                                    const data = {
+                                        labels: <?php echo json_encode($countr); ?>,
+                                        datasets: [{
+                                            label: 'My First Dataset',
+                                            data: <?php echo json_encode($clientsnum); ?>,
+                                            backgroundColor: [
+                                                'rgb(255, 99, 132)',
+                                                'rgb(54, 162, 235)',
+                                                'rgb(255, 205, 86)'
+                                            ],
+                                            hoverOffset: 4
+                                        }]
+                                    };
+                                    const config = {
+                                        type: 'doughnut',
+                                        data: data,
+                                    };
+                                    const myChart = new Chart(
+                                        document.getElementById('myChart'),
+                                        config
+                                    );
+                                </script>
+                            </div>
                         </div>
                     </div>
                 </div>

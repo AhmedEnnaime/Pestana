@@ -23,6 +23,7 @@ class Admins extends Controller
         $reservation = $this->roomModel->getReservedRooms();
         $reservation_info = $this->roomModel->getReservations();
         $earnings = $this->roomModel->getEarnings();
+        $clientsCountry = $this->userModel->getClientsCountry();
         $data = [
             'users' => $users,
             'clients' => $clients,
@@ -30,6 +31,7 @@ class Admins extends Controller
             'reservation' => $reservation,
             'reservation_info' => $reservation_info,
             'earnings' => $earnings,
+            'clientsCountry' => $clientsCountry,
         ];
         $this->view('dashboard', $data);
     }
