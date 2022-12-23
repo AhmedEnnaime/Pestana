@@ -131,7 +131,7 @@ class User
     public function getClientsCountry()
     {
         try {
-            $this->db->query("SELECT user.name,user.country,COUNT(reservation.user_id) AS clients FROM user JOIN reservation ON user.id = reservation.user_id");
+            $this->db->query("SELECT user.country,COUNT(reservation.user_id) AS count FROM user JOIN reservation ON user.id = reservation.user_id group by user.country order by count desc;");
             return $this->db->resultSet();
         } catch (PDOException $ex) {
             echo $ex->getMessage();

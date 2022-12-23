@@ -101,7 +101,7 @@
                                     <?php
                                     foreach ($data['clientsCountry'] as $clientsStats) {
                                         $countr[] = $clientsStats->country;
-                                        $clientsnum[] =  $clientsStats->clients;
+                                        $clientsnum[] =  $clientsStats->count;
                                     }
                                     ?>
                                     const data = {
