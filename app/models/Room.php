@@ -163,7 +163,7 @@ class Room
     public function getReservations()
     {
         try {
-            $this->db->query("SELECT reservation.id,user.name,room.num,room.type,reservation.debut_date,reservation.final_date,reservation.total FROM `reservation` JOIN user ON user.id = reservation.user_id JOIN room ON reservation.room_id = room.id;");
+            $this->db->query("SELECT reservation.id,user.name,room.num,room.type,reservation.debut_date,reservation.final_date,reservation.total FROM `reservation` JOIN user ON user.id = reservation.user_id JOIN room ON reservation.room_id = room.id ORDER BY reservation.final_date ASC;");
             return $this->db->resultSet();
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -298,6 +298,18 @@ class Room
             $this->db->query("SELECT * FROM room WHERE type = 'suite' AND suite_type = :suite_type");
             $this->db->bind(":suite_type", $data['suite_type']);
             return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getReservationByRoomId($room_id)
+    {
+        try {
+            $this->db->query("SELECT * FROM reservation WHERE room_id = :room_id");
+            $this->db->bind(':room_id', $room_id);
+            $row = $this->db->single();
+            return $row;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }

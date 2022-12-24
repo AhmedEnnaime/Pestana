@@ -191,8 +191,10 @@
                                                 <td><?php echo $reservation_info->final_date; ?></td>
                                                 <td>$<?php echo $reservation_info->total; ?></td>
                                                 <td>
+                                                    <?php $today = date('Y-m-d'); ?>
                                                     <form action="<?php echo URLROOT; ?>/rooms/deleteReservation/<?php echo $reservation_info->id; ?>" method="POST">
-                                                        <button type="submit" style="background-color: red;" class="btn btn-primary">Delete</button>
+                                                        <button <?php if ($today > $reservation_info->final_date) { ?> disabled <?php
+                                                                                                                            } ?> type="submit" style="background-color: red;" class="btn btn-primary">Delete</button>
                                                     </form>
                                                 </td>
 
