@@ -171,7 +171,7 @@ class Pages extends Controller
           $this->view('rooms_suites', $data);
         }
       }
-    } else {
+    } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date'])) {
       die(print('refrfef'));
     }
   }

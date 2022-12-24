@@ -122,6 +122,9 @@
                 </div>
 
                 <p class="room__price">$<?php echo $room->price; ?><small>/night</small></p>
+                <?php
+                $today = date('Y-m-d');
+                ?>
 
               </div>
             </div>
