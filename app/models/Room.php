@@ -232,7 +232,7 @@ class Room
     public function getSingleRoomsCount()
     {
         try {
-            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'single'");
+            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'single' and reserved = 0");
             $row = $this->db->single();
             return $row;
         } catch (PDOException $ex) {
@@ -243,7 +243,7 @@ class Room
     public function getDoubleRoomsCount()
     {
         try {
-            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'double'");
+            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'double' and reserved = 0");
             $row = $this->db->single();
             return $row;
         } catch (PDOException $ex) {
@@ -254,7 +254,7 @@ class Room
     public function getSuitesCount()
     {
         try {
-            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'suite'");
+            $this->db->query("SELECT COUNT(*) as total FROM room WHERE type = 'suite' and reserved = 0");
             $row = $this->db->single();
             return $row;
         } catch (PDOException $ex) {
@@ -286,6 +286,17 @@ class Room
     {
         try {
             $this->db->query("SELECT * FROM room WHERE type = 'suite' AND reserved = 0");
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function getSuitesTypes($data)
+    {
+        try {
+            $this->db->query("SELECT * FROM room WHERE type = 'suite' AND suite_type = :suite_type AND reserved = 0");
+            $this->db->bind(":suite_type", $data['suite_type']);
             return $this->db->resultSet();
         } catch (PDOException $ex) {
             echo $ex->getMessage();

@@ -38,6 +38,7 @@ label {
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
+  gap: 80px;
   margin-top: 25px;
 }
 

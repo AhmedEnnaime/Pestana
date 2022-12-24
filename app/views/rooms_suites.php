@@ -63,45 +63,48 @@
   <main>
     <div id="container">
       <?php flash('reservation_success'); ?>
-      <div class="room-filter">
-        <div class="search">
-          <span>Filter Search</span>
-        </div>
-        <div class="room-default room-check-in">
-          <h5>From</h5>
-          <input type="date" class="check-in" name="check-in" id="check-in">
-        </div>
-        <div class="room-default room-check-out">
-          <h5>To</h5>
-          <input type="date" class="check-in" name="check-out" id="check-out">
-        </div>
-        <div class="room-default room_type">
-          <h5>rooms</h5>
-          <select name="" id="room-type">
-            <option value="Select room type">Select room type</option>
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="suite">Suite</option>
-          </select>
-        </div>
-        <div class="room-default suite_type">
-          <h5>Suite type</h5>
-          <select name="" id="suite-type">
-            <option value="">Select suite type</option>
-            <option value="Standard suite rooms">Standard suite rooms</option>
-            <option value="Junior">Junior</option>
-            <option value="Presidential suite">Presidential suite</option>
-            <option value="Honeymoon suites">Honeymoon suites</option>
-            <option value="Bridal suites">Bridal suites</option>
-          </select>
-        </div>
-        <div class="room-default guest">
-          <h5>Search</h5>
-          <form action="">
+      <form action="<?php echo URLROOT; ?>/pages/filterRooms?page=1" method="POST" id="search_form">
+        <div class="room-filter">
+          <div class="search">
+            <span>Filter Search</span>
+          </div>
+
+          <div class="room-default room-check-in">
+            <h5>From</h5>
+            <input type="date" class="check-in" name="debut_date" id="check-in">
+          </div>
+          <div class="room-default room-check-out">
+            <h5>To</h5>
+            <input type="date" class="check-in" name="final_date" id="check-out">
+          </div>
+          <div class="room-default room_type">
+            <h5>rooms</h5>
+            <select name="room_type" id="room-type">
+              <option value="Select room type">Select room type</option>
+              <option value="single">Single</option>
+              <option value="double">Double</option>
+              <option value="suite">Suite</option>
+            </select>
+          </div>
+          <div class="room-default suite_type">
+            <h5>Suite type</h5>
+            <select name="suite_type" id="suite-type">
+              <option value="">Select suite type</option>
+              <option value="Standard suite rooms">Standard suite rooms</option>
+              <option value="Junior">Junior</option>
+              <option value="Presidential suite">Presidential suite</option>
+              <option value="Honeymoon suites">Honeymoon suites</option>
+              <option value="Bridal suites">Bridal suites</option>
+            </select>
+          </div>
+          <div class="room-default guest">
+            <h5>Search</h5>
+
             <input value="Search" type="submit" name="search" id="guests">
-          </form>
+
+          </div>
         </div>
-      </div>
+      </form>
 
 
       <div class="gallery-container">
