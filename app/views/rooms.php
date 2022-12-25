@@ -65,11 +65,11 @@
  												<div class="form-group">
  													<select class="form-control <?php echo (!empty($data['suite_type_err'])) ? 'is-invalid' : ''; ?> suite_type" name="suite_type" id="suite_type">
  														<option value="">Select suite type</option>
- 														<option value="Standard suite rooms">Standard suite rooms</option>
+ 														<option value="Standard">Standard suite rooms</option>
  														<option value="Junior">Junior</option>
- 														<option value="Presidential suite">Presidential suite</option>
- 														<option value="Honeymoon suites">Honeymoon suites</option>
- 														<option value="Bridal suites">Bridal suites</option>
+ 														<option value="Presidential">Presidential suite</option>
+ 														<option value="Honeymoon">Honeymoon suites</option>
+ 														<option value="Bridal">Bridal suites</option>
  													</select>
  													<span class="invalid-feedback"><?php echo $data['suite_type_err'];  ?></span>
 
@@ -175,11 +175,11 @@
  																	<div class="form-group">
  																		<select class="form-control <?php echo (!empty($data_update['suite_type_err'])) ? 'is-invalid' : ''; ?> suite_type" name="suite_type" id="suite_type">
  																			<option value="">Select suite type</option>
- 																			<option value="Standard suite rooms">Standard suite rooms</option>
+ 																			<option value="Standard">Standard suite rooms</option>
  																			<option value="Junior">Junior</option>
- 																			<option value="Presidential suite">Presidential suite</option>
- 																			<option value="Honeymoon suites">Honeymoon suites</option>
- 																			<option value="Bridal suites">Bridal suites</option>
+ 																			<option value="Presidential">Presidential suite</option>
+ 																			<option value="Honeymoon">Honeymoon suites</option>
+ 																			<option value="Bridal">Bridal suites</option>
  																		</select>
  																		<span class="invalid-feedback"><?php echo $data_update['suite_type_err'];  ?></span>
 

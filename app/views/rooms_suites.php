@@ -90,11 +90,11 @@
             <h5>Suite type</h5>
             <select name="suite_type" id="suite-type">
               <option value="">Select suite type</option>
-              <option value="Standard suite rooms">Standard suite rooms</option>
+              <option value="Standard">Standard suite rooms</option>
               <option value="Junior">Junior</option>
-              <option value="Presidential suite">Presidential suite</option>
-              <option value="Honeymoon suites">Honeymoon suites</option>
-              <option value="Bridal suites">Bridal suites</option>
+              <option value="Presidential">Presidential suite</option>
+              <option value="Honeymoon">Honeymoon suites</option>
+              <option value="Bridal">Bridal suites</option>
             </select>
           </div>
           <div class="room-default guest">
@@ -114,15 +114,16 @@
               <img src="<?php echo URLROOT; ?>/assets/images/client_img//bed-bedroom-1.jpg" alt="">
               <div class="room-text-container">
                 <div class="booking">
-                  <p class="room__type"><?php echo $room->type; ?></p>
-
-                  <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="GET">
-
-                    <input type="submit" class="booking-btn" value="Book">
-                  </form>
+                  <p class="room__type"><?php echo $room->type; ?><?php if ($room->type == 'suite') {
+                                                                    echo '/' . $room->suite_type;
+                                                                  } ?></p>
                 </div>
 
                 <p class="room__price">$<?php echo $room->price; ?><small>/night</small></p>
+                <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="GET">
+
+                  <input type="submit" class="booking-btn" value="Book">
+                </form>
                 <?php
                 $today = date('Y-m-d');
                 ?>

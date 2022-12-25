@@ -303,11 +303,11 @@ class Room
         }
     }
 
-    public function getReservationByRoomId($room_id)
+    public function getReservationByRoomId($data)
     {
         try {
             $this->db->query("SELECT * FROM reservation WHERE room_id = :room_id");
-            $this->db->bind(':room_id', $room_id);
+            $this->db->bind(':room_id', $data['room_id']);
             $row = $this->db->single();
             return $row;
         } catch (PDOException $ex) {

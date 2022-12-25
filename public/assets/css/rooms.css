@@ -71,13 +71,15 @@ label {
 .booking{
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 30px;
 }
 
 .booking-btn{
   padding-right: 20px;
   padding-left: 20px;
   border-radius: 20px;
+  margin-left: 50%;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -131,7 +133,7 @@ label {
 }
 
 .room-text-container {
-  display: flex;
+  display: grid;
   flex-direction: column;
   justify-content: flex-start;
   margin-right: 30%;
