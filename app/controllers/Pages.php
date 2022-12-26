@@ -171,8 +171,71 @@ class Pages extends Controller
           $this->view('rooms_suites', $data);
         }
       }
-    } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date'])) {
-      die(print('refrfef'));
+    } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date']) && empty($_POST['room_type'])) {
+      $date = [
+        'date' => $_POST['final_date'],
+      ];
+
+      $rooms_count = $this->roomModel->filterByDateCount($date);
+      //die(print_r($rooms_count));
+      @$page = $_GET['page'];
+      $rooms_nb = $rooms_count->total;
+      $elem_nb = 9;
+      $pages_nb = ceil($rooms_nb / $elem_nb);
+      $debut = ($page - 1) * $elem_nb;
+      $singleRooms = $this->roomModel->filterByDate($date);
+      $data = [
+        'rooms' => $singleRooms,
+        'page_number' => $pages_nb,
+        'debut' => $debut,
+        'elem_nb' => $elem_nb,
+        'page' => $page,
+      ];
+      $this->view('rooms_suites', $data);
+    } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date']) && !empty($_POST['room_type']) && empty($_POST['suite_type'])) {
+      $info = [
+        'type' => $_POST['room_type'],
+        'date' => $_POST['final_date'],
+      ];
+
+      $rooms_count = $this->roomModel->filterByDateAndTypeCount($info);
+      @$page = $_GET['page'];
+      $rooms_nb = $rooms_count->total;
+      $elem_nb = 9;
+      $pages_nb = ceil($rooms_nb / $elem_nb);
+      $debut = ($page - 1) * $elem_nb;
+      $singleRooms = $this->roomModel->filterByDateAndType($info);
+
+      $data = [
+        'rooms' => $singleRooms,
+        'page_number' => $pages_nb,
+        'debut' => $debut,
+        'elem_nb' => $elem_nb,
+        'page' => $page,
+      ];
+      $this->view('rooms_suites', $data);
+    } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date']) && !empty($_POST['room_type']) && !empty($_POST['suite_type'])) {
+      $info = [
+        'date' => $_POST['final_date'],
+        'suite_type' => $_POST['suite_type'],
+      ];
+
+      $rooms_count = $this->roomModel->filterByAllCount($info);
+      @$page = $_GET['page'];
+      $rooms_nb = $rooms_count->total;
+      $elem_nb = 9;
+      $pages_nb = ceil($rooms_nb / $elem_nb);
+      $debut = ($page - 1) * $elem_nb;
+      $singleRooms = $this->roomModel->filterByAll($info);
+
+      $data = [
+        'rooms' => $singleRooms,
+        'page_number' => $pages_nb,
+        'debut' => $debut,
+        'elem_nb' => $elem_nb,
+        'page' => $page,
+      ];
+      $this->view('rooms_suites', $data);
     }
   }
 }

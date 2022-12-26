@@ -314,4 +314,77 @@ class Room
             echo $ex->getMessage();
         }
     }
+
+    public function filterByDate($data)
+    {
+        try {
+            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:date BETWEEN res.debut_date AND res.final_date OR :date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL;");
+            $this->db->bind(":date", $data['date']);
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function filterByDateCount($data)
+    {
+        try {
+            $this->db->query("SELECT COUNT(*) as total FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:date BETWEEN res.debut_date AND res.final_date OR :date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL;");
+            $this->db->bind(":date", $data['date']);
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function filterByDateAndType($data)
+    {
+        try {
+            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:date BETWEEN res.debut_date AND res.final_date OR :date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = :type;");
+            $this->db->bind(":date", $data['date']);
+            $this->db->bind(":type", $data['type']);
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function filterByDateAndTypeCount($data)
+    {
+        try {
+            $this->db->query("SELECT COUNT(*) as total FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:date BETWEEN res.debut_date AND res.final_date OR :date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = :type;");
+            $this->db->bind(":date", $data['date']);
+            $this->db->bind(":type", $data['type']);
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function filterByAll($data)
+    {
+        try {
+            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:date BETWEEN res.debut_date AND res.final_date OR :date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = 'suite' AND r.suite_type = :suite_type;");
+            $this->db->bind(":date", $data['date']);
+            $this->db->bind(":suite_type", $data['suite_type']);
+            return $this->db->resultSet();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    public function filterByAllCount($data)
+    {
+        try {
+            $this->db->query("SELECT COUNT(*) FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:date BETWEEN res.debut_date AND res.final_date OR :date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = 'suite' AND r.suite_type = :suite_type;");
+            $this->db->bind(":date", $data['date']);
+            $this->db->bind(":suite_type", $data['suite_type']);
+            $row = $this->db->single();
+            return $row;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

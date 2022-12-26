@@ -75,12 +75,12 @@
           </div>
           <div class="room-default room-check-out">
             <h5>To</h5>
-            <input type="date" class="check-in" name="final_date" id="check-out">
+            <input type="date" class="check-out" name="final_date" id="check-out">
           </div>
           <div class="room-default room_type">
             <h5>rooms</h5>
             <select name="room_type" id="room-type">
-              <option value="Select room type">Select room type</option>
+              <option value="">Select room type</option>
               <option value="single">Single</option>
               <option value="double">Double</option>
               <option value="suite">Suite</option>
