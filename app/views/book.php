@@ -80,18 +80,18 @@
                 </div>
                 <div class="booking-form">
                     <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $data['room']->id; ?>" id="booking-form" method="POST">
-                        <?php print_r($data); ?>
+                        <?php print_r($data['reservation_info']->debut_date); ?>
                         <?php $jsonObj = json_encode($data['reservation_info']); ?>
                         <?php print_r($jsonObj); ?>
                         <h2>Book your room or suite!</h2>
                         <div class="form-group form-input">
                             <label for="deut_date">Debut date</label>
-                            <input type="date" name="debut_date" class="booking-date-from booking-date" id="debut_date" value="" required />
+                            <input type="date" name="debut_date" class="booking-date-from date1" value="" required />
 
                         </div>
                         <div class="form-group form-input">
                             <label for="phone">Final date</label>
-                            <input type="date" name="final_date" class="booking-date-to booking-date" id="final_date" value="" required />
+                            <input type="date" name="final_date" class="booking-date-to date1" id="final_date" value="" onkeydown="return false" required />
 
                         </div>
 
@@ -124,12 +124,12 @@
                             <div class="guests guests1">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 1</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
+                                    <input type="text" placeholder="Enter guest name" name="name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 1</label>
-                                    <input type="date" name="guest_birthday" value="" />
+                                    <input type="date" name="birthday" value="" />
 
                                 </div>
                             </div>
@@ -137,12 +137,12 @@
                             <div class="guests guests2">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 2</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
+                                    <input type="text" placeholder="Enter guest name" name="name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 2</label>
-                                    <input type="date" name="guest_birthday" value="" />
+                                    <input type="date" name="birthday" value="" />
 
                                 </div>
                             </div>
@@ -150,12 +150,12 @@
                             <div class="guests guests3">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 3</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
+                                    <input type="text" placeholder="Enter guest name" name="name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 3</label>
-                                    <input type="date" name="guest_birthday" value="" />
+                                    <input type="date" name="birthday" value="" />
 
                                 </div>
                             </div>
@@ -163,12 +163,12 @@
                             <div class="guests guests4">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 4</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
+                                    <input type="text" placeholder="Enter guest name" name="name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 4</label>
-                                    <input type="date" name="guest_birthday" value="" />
+                                    <input type="date" name="birthday" value="" />
 
                                 </div>
                             </div>
@@ -176,12 +176,12 @@
                             <div class="guests guests5">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 5</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
+                                    <input type="text" placeholder="Enter guest name" name="name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 5</label>
-                                    <input type="date" name="guest_birthday" value="" />
+                                    <input type="date" name="birthday" value="" />
 
                                 </div>
                             </div>
@@ -189,12 +189,12 @@
                             <div class="guests guests6">
                                 <div class="form-group form-input">
                                     <label for="phone">Name of guest 6</label>
-                                    <input type="text" placeholder="Enter guest name" name="guest_name" value="" />
+                                    <input type="text" placeholder="Enter guest name" name="name" value="" />
 
                                 </div>
                                 <div style="margin-bottom: 50px;" class="form-group form-input">
                                     <label for="phone">Birthday of guest 6</label>
-                                    <input type="date" name="guest_birthday" value="" />
+                                    <input type="date" name="birthday" value="" />
 
                                 </div>
                             </div>
@@ -215,19 +215,55 @@
     <script>
         let reservation0bj = '<?= $jsonObj ?>';
         let info = JSON.parse(reservation0bj);
-        const booking_date = document.querySelectorAll('.booking-date');
-        for (book_date of booking_date) {
-            book_date.addEventListener('change', (e) => {
-                let date_input = e.target.value;
-                console.log(date_input);
-                if (date_input > info['final_date'] && date_input < info['debut_date']) {
-                    console.log("success");
-                } else {
-                    console.log("Already reserved");
-                }
-            })
+        if (Object.keys(info).length == 0) {
+            console.log("success");
+        } else {
+            let check_in_date = new Date(info['debut_date']).toISOString().split('T')[0];
+            let check_out_date = new Date(info['final_date']).toISOString().split('T')[0];
+            // const booking_from_date = document.querySelector('.booking-date-from');
+            // const booking_to_date = document.querySelector('.booking-date-to');
+            // const a = "2022-12-28"
+            // const b = "2022-12-31"
+            let arr = []
+            let start = check_in_date.split("-")[2]
+            let end = check_out_date.split("-")[2]
+
+            for (let i = start; i <= end; i++) {
+                arr.push(check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i)
+            }
+            console.log(arr);
+
+            const picker = document.querySelectorAll('.date1');
+            // var ok = new Date("2022-12-28").getUTCDay();
+            // console.log(ok);
+            for (pick of picker) {
+                pick.addEventListener('input', function(e) {
+                    let x = this.value
+                    if (arr.includes(x)) {
+                        e.preventDefault();
+                        this.value = '';
+                        alert('Room is reserved on this date');
+                    }
+                });
+            }
+
+
+            // booking_from_date.addEventListener('change', (event) => {
+            //     booking_to_date.addEventListener('change', (e) => {
+
+            //         let date_obj_from = new Date(event.target.value).toISOString().split('T')[0];
+            //         let date_Obj_to = new Date(e.target.value).toISOString().split('T')[0];
+            //         if ((date_obj_from > check_out_date && date_Obj_to > check_out_date) || (date_obj_from < check_in_date && date_Obj_to < check_in_date)) {
+            //             console.log("success");
+            //         } else {
+            //             //date_input.setAttribute('disabled')
+            //             console.log("Already reserved");
+            //         }
+            //     })
+
+            // })
+
         }
-        console.log(info['final_date']);
     </script>
     <!-- JS -->
     <script src="<?php echo URLROOT; ?>/assets/vendor/jquery/jquery.min.js"></script>

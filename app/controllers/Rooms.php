@@ -232,13 +232,17 @@ class Rooms extends Controller
                     'debut_date' => $_POST['debut_date'],
                     'final_date' => $_POST['final_date'],
                     'persons_num' => $_POST['persons_num'],
+                    'user_id' => $_SESSION['id'],
                     'total' => $total,
+                    'name' => $_POST['name'],
+                    'birthday' => $_POST['birthday'],
+                    'reservation_id' => $_POST['reservation_id'],
                     'debut_date_err' => '',
                     'final_date_err' => '',
                     'persons_num_err' => '',
                 ];
 
-                if ($this->roomModel->book($data)) {
+                if ($this->roomModel->bookSuite($data)) {
                     flash('reservation_success', 'Room booked');
                     redirect('pages/rooms?page=1');
                 } else {
@@ -253,6 +257,7 @@ class Rooms extends Controller
                     'room_id' => $id,
                     'debut_date' => $_POST['debut_date'],
                     'final_date' => $_POST['final_date'],
+                    'user_id' => $_SESSION['id'],
                     'total' => $total,
                     'debut_date_err' => '',
                     'final_date_err' => '',

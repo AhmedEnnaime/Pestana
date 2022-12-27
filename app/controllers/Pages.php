@@ -173,7 +173,8 @@ class Pages extends Controller
       }
     } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date']) && empty($_POST['room_type'])) {
       $date = [
-        'date' => $_POST['final_date'],
+        'debut_date' => $_POST['debut_date'],
+        'final_date' => $_POST['final_date'],
       ];
 
       $rooms_count = $this->roomModel->filterByDateCount($date);
@@ -195,7 +196,8 @@ class Pages extends Controller
     } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date']) && !empty($_POST['room_type']) && empty($_POST['suite_type'])) {
       $info = [
         'type' => $_POST['room_type'],
-        'date' => $_POST['final_date'],
+        'debut_date' => $_POST['debut_date'],
+        'final_date' => $_POST['final_date'],
       ];
 
       $rooms_count = $this->roomModel->filterByDateAndTypeCount($info);
@@ -216,7 +218,8 @@ class Pages extends Controller
       $this->view('rooms_suites', $data);
     } else if (!empty($_POST['debut_date']) && !empty($_POST['final_date']) && !empty($_POST['room_type']) && !empty($_POST['suite_type'])) {
       $info = [
-        'date' => $_POST['final_date'],
+        'debut_date' => $_POST['debut_date'],
+        'final_date' => $_POST['final_date'],
         'suite_type' => $_POST['suite_type'],
       ];
 

@@ -5,9 +5,6 @@
 
 <body>
 
-  <?php
-
-  ?>
   <div class="" id="loader">
     <div class="glow">
       Pestana
@@ -121,8 +118,12 @@
 
                 <p class="room__price">$<?php echo $room->price; ?><small>/night</small></p>
                 <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $room->id; ?>" method="GET">
+                  <?php if ($_SESSION['logged'] == true) { ?>
+                    <input type="submit" class="booking-btn" value="Book">
 
-                  <input type="submit" class="booking-btn" value="Book">
+                  <?php
+                  } ?>
+
                 </form>
                 <?php
                 $today = date('Y-m-d');

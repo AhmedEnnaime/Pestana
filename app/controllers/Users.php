@@ -6,6 +6,7 @@ class Users extends Controller
     public function __construct()
     {
         $this->userModel = $this->model('User');
+        $this->userModel = $this->model('Room');
     }
 
     public function signup()
@@ -298,6 +299,17 @@ class Users extends Controller
             }
         } else {
             redirect('users/profile');
+        }
+    }
+
+    public function reservations()
+    {
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->view('reservations');
+        } else {
+            $this->view('reservations');
         }
     }
 
