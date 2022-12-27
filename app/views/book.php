@@ -80,15 +80,18 @@
                 </div>
                 <div class="booking-form">
                     <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $data['room']->id; ?>" id="booking-form" method="POST">
+                        <?php print_r($data); ?>
+                        <?php $jsonObj = json_encode($data['reservation_info']); ?>
+                        <?php print_r($jsonObj); ?>
                         <h2>Book your room or suite!</h2>
                         <div class="form-group form-input">
                             <label for="deut_date">Debut date</label>
-                            <input type="date" name="debut_date" class="booking-date" id="debut_date" value="" required />
+                            <input type="date" name="debut_date" class="booking-date-from booking-date" id="debut_date" value="" required />
 
                         </div>
                         <div class="form-group form-input">
                             <label for="phone">Final date</label>
-                            <input type="date" name="final_date" class="booking-date" id="final_date" value="" required />
+                            <input type="date" name="final_date" class="booking-date-to booking-date" id="final_date" value="" required />
 
                         </div>
 
@@ -208,6 +211,24 @@
         </div>
 
     </div>
+
+    <script>
+        let reservation0bj = '<?= $jsonObj ?>';
+        let info = JSON.parse(reservation0bj);
+        const booking_date = document.querySelectorAll('.booking-date');
+        for (book_date of booking_date) {
+            book_date.addEventListener('change', (e) => {
+                let date_input = e.target.value;
+                console.log(date_input);
+                if (date_input > info['final_date'] && date_input < info['debut_date']) {
+                    console.log("success");
+                } else {
+                    console.log("Already reserved");
+                }
+            })
+        }
+        console.log(info['final_date']);
+    </script>
     <!-- JS -->
     <script src="<?php echo URLROOT; ?>/assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo URLROOT; ?>/assets/js/book.js"></script>

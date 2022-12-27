@@ -245,6 +245,7 @@ class Rooms extends Controller
                     die('Something went wrong');
                 }
             } else {
+
                 $data = [
                     'id' => $id,
                     'room' => $room,
@@ -270,8 +271,13 @@ class Rooms extends Controller
         } else {
             $room = $this->roomModel->getRoomById($id);
             $nights = $_POST['debut_date'] - $_POST['final_date'];
+            $info = [
+                'room_id' => $id,
+            ];
+            $reservation_info = $this->roomModel->getReservationByRoomId($info);
             $data = [
                 'room' => $room,
+                'reservation_info' => $reservation_info,
             ];
             $this->view('book', $data);
         }
