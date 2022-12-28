@@ -21,7 +21,6 @@ class Rooms extends Controller
                 'price' => trim($_POST['price']),
                 'type' => trim($_POST['type']),
                 'suite_type' => trim($_POST['suite_type']),
-                'reserved' => 0,
                 'media' => $_FILES['media']['name'],
                 'num_err' => '',
                 'capacity_err' => '',
@@ -88,7 +87,6 @@ class Rooms extends Controller
                 'price' => '',
                 'type' => '',
                 'suite_type' => '',
-                'reserved' => 0,
                 'media' => '',
                 'num_err' => '',
                 'capacity_err' => '',
@@ -120,14 +118,13 @@ class Rooms extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $data_update = [
+            $data = [
                 'id' => $id,
                 'num' => trim($_POST['num']),
                 'capacity' => trim($_POST['capacity']),
                 'price' => trim($_POST['price']),
                 'type' => trim($_POST['type']),
                 'suite_type' => trim($_POST['suite_type']),
-                'reserved' => 0,
                 'num_err' => '',
                 'capacity_err' => '',
                 'price_err' => '',
@@ -136,80 +133,62 @@ class Rooms extends Controller
             ];
 
             // Validation Form
-
-            if (empty($data_update['num'])) {
-                $data_update['num_err'] = 'Please enter num';
+            die(print('dcde'));
+            if (empty($data['num'])) {
+                $data['num_err'] = 'Please enter num';
             }
 
-            if (empty($data_update['capacity'])) {
-                $data_update['capacity_err'] = 'Please enter capacity';
+            if (empty($data['capacity'])) {
+                $data['capacity_err'] = 'Please enter capacity';
             }
 
-            if (empty($data_update['price'])) {
-                $data_update['price_err'] = 'Please enter price';
+            if (empty($data['price'])) {
+                $data['price_err'] = 'Please enter price';
             }
 
-            if (empty($data_update['type'])) {
-                $data_update['type_err'] = 'Please enter your type';
+            if (empty($data['type'])) {
+                $data['type_err'] = 'Please enter your type';
             }
 
-            if (empty($data_update['suite_type'])) {
-                $data_update['suite_type_err'] = 'Please enter your suite type';
+            if (empty($data['suite_type'])) {
+                $data['suite_type_err'] = 'Please enter your suite type';
             }
 
-            if (empty($data_update['num_err']) && empty($data_update['capacity_err']) && empty($data_update['price_err']) && empty($data_update['type_err'])) {
 
-                if ($this->roomModel->update($data_update)) {
+            if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err'])) {
+
+                if ($this->roomModel->update($data)) {
                     flash('update_success', 'Room updated');
                     redirect('rooms/rooms');
                 } else {
                     die("Something went wrong");
                 }
             } else {
-                $this->view('rooms', $data_update);
+                $this->view('update', $data);
             }
-        } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        } else {
             $room = $this->roomModel->getRoomById($id);
 
             if ($room->id != $id) {
                 redirect('rooms/rooms');
             }
 
-            $rooms = $this->roomModel->getAllRooms();
+
             $data = [
-                'num' => '',
-                'capacity' => '',
-                'price' => '',
-                'type' => '',
-                'suite_type' => '',
-                'reserved' => 0,
-                'media' => '',
-                'num_err' => '',
-                'capacity_err' => '',
-                'price_err' => '',
-                'type_err' => '',
-                'suite_type_err' => '',
-                'media_err' => '',
-                'rooms' => $rooms,
-            ];
-
-
-            $data_update = [
                 'id' => $id,
                 'num' => $room->num,
                 'capacity' => $room->capacity,
                 'price' => $room->price,
                 'type' => $room->type,
                 'suite_type' => $room->suite_type,
-                'reserved' => 0,
                 'num_err' => '',
                 'capacity_err' => '',
                 'price_err' => '',
                 'type_err' => '',
                 'suite_type_err' => '',
             ];
-            $_SESSION['data'] = $data_update;
-            $this->view('rooms', $data);
+
+            $this->view('update', $data);
         }
     }
 
@@ -241,8 +220,8 @@ class Rooms extends Controller
                     'final_date_err' => '',
                     'persons_num_err' => '',
                 ];
-                echo "<pre>";
-                die(print_r($data));
+                //echo "<pre>";
+                //die(print_r($data));
                 if ($this->roomModel->bookSuite($data)) {
                     flash('reservation_success', 'Room booked');
                     redirect('pages/rooms?page=1');

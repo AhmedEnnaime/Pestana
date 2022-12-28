@@ -41,11 +41,13 @@
                     <div class="dropdown">
                         <button class="dropbtn"><img src="<?php echo URLROOT; ?>/assets/images/book-your-reservation-image_1-removebg-preview.png" alt="" width="120px"></button>
                         <div class="dropdown-content">
+                            <?php $today = date('Y-m-d'); ?>
                             <?php foreach ($data['userReservations'] as $userReservation) : ?>
                                 <div class="item">
                                     <a href="#"><?php echo $userReservation->debut_date; ?></a>
-                                    <form action="<?php echo URLROOT; ?>/rooms/deleteReservation/<?php echo $userReservation->id; ?>" method="POST">
-                                        <button type="submit"><i style="color:red; cursor:pointer;" class="uil uil-trash-alt"></i></button>
+                                    <form <?php if ($today > $reservation_info->final_date) { ?> disabled <?php
+                                                                                                        } ?> action="<?php echo URLROOT; ?>/rooms/deleteReservation/<?php echo $userReservation->id; ?>" method="POST">
+                                        <button style="font-size: 20px;" type="submit"><i style="color:red; cursor:pointer;" class="uil uil-trash-alt"></i></button>
                                     </form>
                                 </div>
                             <?php endforeach; ?>

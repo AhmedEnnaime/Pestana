@@ -52,13 +52,12 @@ class Room
     public function add($data)
     {
         try {
-            $this->db->query("INSERT INTO room (num,capacity,price,type,suite_type,reserved,media) VALUES(:num, :capacity, :price, :type, :suite_type, :reserved, :media)");
+            $this->db->query("INSERT INTO room (num,capacity,price,type,suite_type,media) VALUES(:num, :capacity, :price, :type, :suite_type, :media)");
             $this->db->bind(':num', $data['num']);
             $this->db->bind(':capacity', $data['capacity']);
             $this->db->bind(':price', $data['price']);
             $this->db->bind(':type', $data['type']);
             $this->db->bind(':suite_type', $data['suite_type']);
-            $this->db->bind(':reserved', $data['reserved']);
             $this->db->bind(':media', $data['media']);
             if ($this->db->execute()) {
                 return true;
@@ -111,14 +110,13 @@ class Room
     public function update($data)
     {
         try {
-            $this->db->query("UPDATE room SET num = :num,capacity = :capacity,price = :price,type = :type,suite_type = :suite_type,reserved = :reserved, media = :media WHERE id = :id");
+            $this->db->query("UPDATE room SET num = :num,capacity = :capacity,price = :price,type = :type,suite_type = :suite_type,media = :media WHERE id = :id");
             $this->db->bind(':id', $data['id']);
             $this->db->bind(':num', $data['num']);
             $this->db->bind(':capacity', $data['capacity']);
             $this->db->bind(':price', $data['price']);
             $this->db->bind(':type', $data['type']);
             $this->db->bind(':suite_type', $data['suite_type']);
-            $this->db->bind(':reserved', $data['reserved']);
             $this->db->bind(':media', $data['media']);
             if ($this->db->execute()) {
                 return true;
@@ -405,12 +403,13 @@ class Room
                     //die(print_r($row));
                     $this->db->query("INSERT INTO guests (name,birthday,reservation_id,user_id) VALUES(:name,:birthday,:reservation_id,:user_id)");
                     for ($i = 0; $i < $data['persons_num']; $i++) {
-                        $this->db->bind(':name', $data[$i]['name']);
-                        $this->db->bind(':birthday', $data[$i]['birthday']);
+                        $this->db->bind(':name', $data['name'][$i]);
+                        $this->db->bind(':birthday', $data['birthday'][$i]);
                         $this->db->bind(':reservation_id', $row->id);
                         $this->db->bind(':user_id', $data['user_id']);
-                        $this->db->execute();
-                        return true;
+                        if ($this->db->execute()) {
+                            return true;
+                        }
                     }
                 }
             } else {

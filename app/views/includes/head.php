@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/style.css">
     <!-- Boostrap Icon-->
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/modules/bootstrap-icons/bootstrap-icons.css">
-    <!-- Apexcharts  CSS -->
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/modules/apexcharts/apexcharts.css">
     <!-- FontAwesome CSS-->
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/modules/fontawesome6.1.1/css/all.css">
     <!-- Boxicons CSS-->
