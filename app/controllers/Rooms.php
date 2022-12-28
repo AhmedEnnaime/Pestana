@@ -241,7 +241,8 @@ class Rooms extends Controller
                     'final_date_err' => '',
                     'persons_num_err' => '',
                 ];
-
+                echo "<pre>";
+                die(print_r($data));
                 if ($this->roomModel->bookSuite($data)) {
                     flash('reservation_success', 'Room booked');
                     redirect('pages/rooms?page=1');

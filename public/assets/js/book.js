@@ -1,12 +1,8 @@
 const booking_date_from = document.querySelector('.booking-date-from');
 const booking_date_to = document.querySelector('.booking-date-to');
 const people_num = document.querySelectorAll('.people_num');
-const guests1 = document.querySelector('.guests1');
-const guests2 = document.querySelector('.guests2');
-const guests3 = document.querySelector('.guests3');
-const guests4 = document.querySelector('.guests4');
-const guests5 = document.querySelector('.guests5');
-const guests6 = document.querySelector('.guests6');
+const people_input = document.querySelector('.guests');
+
 
 let today = new Date().toISOString().split('T')[0];
 booking_date_from.setAttribute('min',today)
@@ -17,35 +13,27 @@ booking_date_from.addEventListener('change',(e)=>{
 
 for(let nbr_people of people_num){
     nbr_people.addEventListener('change',(e)=>{
-        if(e.target.value == 3){
-            guests1.style.display = 'block';
-            guests2.style.display = 'block';
-            guests3.style.display = 'block';
-            guests4.style.display = 'none';
-            guests5.style.display = 'none';
-            guests6.style.display = 'none';
-        }else if(e.target.value == 4){
-            guests1.style.display = 'block';
-            guests2.style.display = 'block';
-            guests3.style.display = 'block';
-            guests4.style.display = 'block';
-            guests5.style.display = 'none';
-            guests6.style.display = 'none';
-        }else if(e.target.value == 5){
-            guests1.style.display = 'block';
-            guests2.style.display = 'block';
-            guests3.style.display = 'block';
-            guests4.style.display = 'block';
-            guests5.style.display = 'block';
-            guests6.style.display = 'none';
-        }else if(e.target.value == 6){
-            guests1.style.display = 'block';
-            guests2.style.display = 'block';
-            guests3.style.display = 'block';
-            guests4.style.display = 'block';
-            guests5.style.display = 'block';
-            guests6.style.display = 'block';
+        people_input.innerHTML = ``;
+        let people = e.target.value;
+        let i = 0;
+        while(i < people){
+            people_input.innerHTML += `
+                <div class="guests_content">
+                    <div class="form-group form-input">
+                        <label style="color: white;" for="phone">Name of guest ${i+1}</label>
+                        <input type="text" placeholder="Enter guest name" name="name[]" value="" />
+                    </div>
+                    <div style="margin-bottom: 50px;" class="form-group form-input">
+                        <label style="color: white;" for="phone">Birthday of guest ${i+1}</label>
+                        <input type="date" name="birthday[]" value="" />
+
+                    </div>
+                </div>
+          
+            `
+            i++;
         }
+       
     })
 }
 

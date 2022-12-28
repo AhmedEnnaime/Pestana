@@ -399,15 +399,19 @@ class Room
             $this->db->bind(':persons_num', $data['persons_num']);
             $this->db->bind(':total', $data['total']);
             if ($this->db->execute()) {
-                //$id = $this->db->lastInsertId();
-                for ($i = 0; $i < $data['persons_num']; $i++) {
+                $this->db->query("SELECT * FROM reservation ORDER BY id DESC LIMIT 1");
+                $row = $this->db->single();
+                if ($this->db->execute()) {
+                    //die(print_r($row));
                     $this->db->query("INSERT INTO guests (name,birthday,reservation_id,user_id) VALUES(:name,:birthday,:reservation_id,:user_id)");
-                    $this->db->bind(':name', $data[$i]['name']);
-                    $this->db->bind(':birthday', $data['birthday']);
-                    $this->db->bind(':reservation_id', $data['reservation_id']);
-                    $this->db->bind(':user_id', $data['user_id']);
-                    $this->db->execute();
-                    return true;
+                    for ($i = 0; $i < $data['persons_num']; $i++) {
+                        $this->db->bind(':name', $data[$i]['name']);
+                        $this->db->bind(':birthday', $data[$i]['birthday']);
+                        $this->db->bind(':reservation_id', $row->id);
+                        $this->db->bind(':user_id', $data['user_id']);
+                        $this->db->execute();
+                        return true;
+                    }
                 }
             } else {
                 return false;
