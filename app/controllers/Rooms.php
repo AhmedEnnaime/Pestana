@@ -249,6 +249,10 @@ class Rooms extends Controller
                     die('Something went wrong');
                 }
             } else {
+                $info = [
+                    'user_id' => $_SESSION['id'],
+                ];
+                $userReservations = $this->roomModel->getUserReservations($info);
 
                 $data = [
                     'id' => $id,
@@ -259,6 +263,7 @@ class Rooms extends Controller
                     'final_date' => $_POST['final_date'],
                     'user_id' => $_SESSION['id'],
                     'total' => $total,
+                    'userReservations' => $userReservations,
                     'debut_date_err' => '',
                     'final_date_err' => '',
                     'persons_num_err' => '',
@@ -293,14 +298,16 @@ class Rooms extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $reservation = $this->roomModel->getReservationById($id);
-            $data = [
-                'id' => $id,
-                'room_id' => $reservation->room_id,
-            ];
 
-            if ($this->roomModel->deleteReservation($data)) {
+            if ($this->roomModel->deleteReservation($id)) {
+
                 flash('reservation_message', 'Reservation deleted', 'alert alert-danger');
-                redirect('admins/dashboard');
+                //die(print_r($id));
+                if ($_SESSION['role'] == 0) {
+                    redirect('admins/dashboard');
+                } else {
+                    redirect('index');
+                }
             } else {
                 die('Something went wrong');
             }

@@ -8,6 +8,7 @@
     <title><?php echo SITENAME; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Salsa|Montserrat|Segoe UI|Poppins" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Salsa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/nav.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/footer.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/main.css">

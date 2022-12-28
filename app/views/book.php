@@ -80,9 +80,7 @@
                 </div>
                 <div class="booking-form">
                     <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $data['room']->id; ?>" id="booking-form" method="POST">
-                        <?php print_r($data['reservation_info']->debut_date); ?>
                         <?php $jsonObj = json_encode($data['reservation_info']); ?>
-                        <?php print_r($jsonObj); ?>
                         <h2>Book your room or suite!</h2>
                         <div class="form-group form-input">
                             <label for="deut_date">Debut date</label>
@@ -215,18 +213,16 @@
     <script>
         let reservation0bj = '<?= $jsonObj ?>';
         let info = JSON.parse(reservation0bj);
+        let arr = []
+        console.log(info);
         if (Object.keys(info).length == 0) {
             console.log("success");
         } else {
             let check_in_date = new Date(info['debut_date']).toISOString().split('T')[0];
             let check_out_date = new Date(info['final_date']).toISOString().split('T')[0];
-            // const booking_from_date = document.querySelector('.booking-date-from');
-            // const booking_to_date = document.querySelector('.booking-date-to');
-            // const a = "2022-12-28"
-            // const b = "2022-12-31"
-            let arr = []
             let start = check_in_date.split("-")[2]
             let end = check_out_date.split("-")[2]
+            console.log(start, end);
 
             for (let i = start; i <= end; i++) {
                 arr.push(check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i)
@@ -234,34 +230,17 @@
             console.log(arr);
 
             const picker = document.querySelectorAll('.date1');
-            // var ok = new Date("2022-12-28").getUTCDay();
-            // console.log(ok);
+
             for (pick of picker) {
                 pick.addEventListener('input', function(e) {
                     let x = this.value
                     if (arr.includes(x)) {
                         e.preventDefault();
                         this.value = '';
-                        alert('Room is reserved on this date');
+                        alert('Room is reserved from ' + check_in_date + " to " + check_out_date);
                     }
                 });
             }
-
-
-            // booking_from_date.addEventListener('change', (event) => {
-            //     booking_to_date.addEventListener('change', (e) => {
-
-            //         let date_obj_from = new Date(event.target.value).toISOString().split('T')[0];
-            //         let date_Obj_to = new Date(e.target.value).toISOString().split('T')[0];
-            //         if ((date_obj_from > check_out_date && date_Obj_to > check_out_date) || (date_obj_from < check_in_date && date_Obj_to < check_in_date)) {
-            //             console.log("success");
-            //         } else {
-            //             //date_input.setAttribute('disabled')
-            //             console.log("Already reserved");
-            //         }
-            //     })
-
-            // })
 
         }
     </script>

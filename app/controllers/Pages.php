@@ -8,22 +8,48 @@ class Pages extends Controller
 
   public function index()
   {
-    $this->view('index');
+    $info = [
+      'user_id' => $_SESSION['id'],
+    ];
+    $userReservations = $this->roomModel->getUserReservations($info);
+    $data = [
+      'userReservations' => $userReservations,
+    ];
+    $this->view('index', $data);
   }
 
   public function contact()
   {
-    $this->view('contact');
+    $info = [
+      'user_id' => $_SESSION['id'],
+    ];
+    $userReservations = $this->roomModel->getUserReservations($info);
+    $data = [
+      'userReservations' => $userReservations,
+    ];
+    $this->view('contact', $data);
   }
 
   public function facilities()
   {
-    $this->view('facilities');
+    $info = [
+      'user_id' => $_SESSION['id'],
+    ];
+    $userReservations = $this->roomModel->getUserReservations($info);
+    $data = [
+      'userReservations' => $userReservations,
+    ];
+
+    $this->view('facilities', $data);
   }
 
   public function rooms()
   {
-
+    $info = [
+      'user_id' => $_SESSION['id'],
+    ];
+    $userReservations = $this->roomModel->getUserReservations($info);
+    //die(print_r($info));
     $rooms_count = $this->roomModel->getRoomsCount();
     @$page = $_GET['page'];
     $rooms_nb = $rooms_count->total;
@@ -37,6 +63,7 @@ class Pages extends Controller
       'debut' => $debut,
       'elem_nb' => $elem_nb,
       'page' => $page,
+      'userReservations' => $userReservations,
     ];
     $this->view('rooms_suites', $data);
   }

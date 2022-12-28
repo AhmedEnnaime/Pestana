@@ -6,7 +6,7 @@ class Users extends Controller
     public function __construct()
     {
         $this->userModel = $this->model('User');
-        $this->userModel = $this->model('Room');
+        $this->roomModel = $this->model('Room');
     }
 
     public function signup()

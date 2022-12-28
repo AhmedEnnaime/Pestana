@@ -24,7 +24,7 @@
 
                 <a href="<?php echo URLROOT; ?>/pages/contact" class="link">Contact Us</a>
                 <?php if ($_SESSION['logged'] == true) { ?>
-                    <a href="<?php echo URLROOT; ?>/users/logout" class="link">Log out</a>
+                    <a href="<?php echo URLROOT; ?>/users/logout" class="link">Logout</a>
                 <?php
                 } else { ?>
                     <a href="<?php echo URLROOT; ?>/users/login" class="link">Login</a>
@@ -36,6 +36,25 @@
                     <a href="<?php echo URLROOT; ?>/users/profile/<?php echo $_SESSION['id']; ?>" class="link">Profile</a>
 
                 <?php
+                } ?>
+                <?php if (isLoggedIn()) { ?>
+                    <div class="dropdown">
+                        <button class="dropbtn"><img src="<?php echo URLROOT; ?>/assets/images/book-your-reservation-image_1-removebg-preview.png" alt="" width="120px"></button>
+                        <div class="dropdown-content">
+                            <?php foreach ($data['userReservations'] as $userReservation) : ?>
+                                <div class="item">
+                                    <a href="#"><?php echo $userReservation->debut_date; ?></a>
+                                    <form action="<?php echo URLROOT; ?>/rooms/deleteReservation/<?php echo $userReservation->id; ?>" method="POST">
+                                        <button type="submit"><i style="color:red; cursor:pointer;" class="uil uil-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+
+                <?php
+
                 } ?>
 
             </div>
