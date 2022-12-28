@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/nav.style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/footer.style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 </head>
 
 <body>
@@ -84,12 +87,14 @@
                         <h2>Book your room or suite!</h2>
                         <div class="form-group form-input">
                             <label for="deut_date">Debut date</label>
-                            <input type="date" name="debut_date" class="booking-date-from date1" value="" required />
+                            <!-- <input type="date" id="date-picker" name="debut_date" class="booking-date-from date1" value="" required /> -->
+                            <input type="text" name="debut_date" class="form-control datepicker booking-date-from date1" placeholder="Date" name="date">
 
                         </div>
                         <div class="form-group form-input">
                             <label for="phone">Final date</label>
-                            <input type="date" name="final_date" class="booking-date-to date1" id="final_date" value="" onkeydown="return false" required />
+                            <input type="text" name="final_date" class="form-control datepicker booking-date-from date1" placeholder="Date" name="date">
+                            <!-- <input type="date" name="final_date" class="booking-date-to date1" id="final_date" value="" onkeydown="return false" required /> -->
 
                         </div>
 
@@ -209,40 +214,128 @@
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
         let reservation0bj = '<?= $jsonObj ?>';
         let info = JSON.parse(reservation0bj);
-        let arr = []
-        console.log(info);
-        if (Object.keys(info).length == 0) {
-            console.log("success");
-        } else {
-            let check_in_date = new Date(info['debut_date']).toISOString().split('T')[0];
-            let check_out_date = new Date(info['final_date']).toISOString().split('T')[0];
-            let start = check_in_date.split("-")[2]
-            let end = check_out_date.split("-")[2]
-            console.log(start, end);
+        let date_arr = [];
+        //console.log(info);
+        let arr = [];
+        if (info.length != 0) {
+            for (inf of info) {
 
-            for (let i = start; i <= end; i++) {
-                arr.push(check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i)
-            }
-            console.log(arr);
+                let check_in_date = new Date(inf['debut_date']).toISOString().split('T')[0];
+                let check_out_date = new Date(inf['final_date']).toISOString().split('T')[0];
 
-            const picker = document.querySelectorAll('.date1');
+                let check_in_day = check_in_date.split("-")[2];
+                let check_in_month = check_in_date.split("-")[1];
+                let check_in_year = check_in_date.split("-")[0];
+                // let formated_date = check_in_date.split("-")[2] + "-" +
+                function formatDate(dateString) {
+                    // Split the date string into an array of parts
+                    var parts = dateString.split('-');
 
-            for (pick of picker) {
-                pick.addEventListener('input', function(e) {
-                    let x = this.value
-                    if (arr.includes(x)) {
-                        e.preventDefault();
-                        this.value = '';
-                        alert('Room is reserved from ' + check_in_date + " to " + check_out_date);
+                    // Reassemble the date in the desired format
+                    var formattedDate = [parts[1], parts[2], parts[0]].join('-');
+
+                    return formattedDate;
+                }
+
+                let start = check_in_date.split("-")[2]
+                let end = check_out_date.split("-")[2]
+                // console.log(start, end);
+
+                for (let i = start; i <= end; i++) {
+                    if (i < 10 && i > start) {
+                        let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + "0" + i;
+                        //console.log(u);
+                        arr.push(formatDate(u));
+
+
+                    } else {
+                        let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i;
+                        //console.log(u);
+                        arr.push(formatDate(u));
                     }
-                });
+                    console.log(arr);
+
+                }
+
             }
+
 
         }
+        $('.datepicker').datepicker({
+            format: 'mm-dd-yyyy',
+            autoclose: true,
+            todayHighlight: true,
+            datesDisabled: arr
+        });
+
+        ///////////////////////////////////////////////****************** Get the number of days in a month*********** */
+        // Get the day of a date
+        // let date3 = new Date("2022-02-28");
+
+        // function getDaysInMonth(month, year) {
+        //     // Create a new date object for the first day of the month
+        //     var date = new Date(year, month, 1);
+
+        //     // Get the number of days in the month
+        //     var daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+        //     return daysInMonth;
+        // }
+
+        // // Get the number of days in December 2022
+        // var days = getDaysInMonth(date3.getMonth(), date3.getFullYear()); // Returns 31
+        // console.log(days);
+        // *********************************///////////////////////////
+
+        // 1st boucle from debut_date coming from db to the last
+
+
+        ////////////
+
+
+        // let arr = []
+        // console.log(info);
+        // if (Object.keys(info).length == 0) {
+        //     console.log("success");
+        // } else {
+        //     let check_in_date = new Date(info['debut_date']).toISOString().split('T')[0];
+        //     let check_out_date = new Date(info['final_date']).toISOString().split('T')[0];
+        //     console.log(check_in_date);
+        //     let start = check_in_date.split("-")[2]
+        //     let end = check_out_date.split("-")[2]
+        //     console.log(start, end);
+
+        //     for (let i = start; i <= end; i++) {
+
+        //         arr.push(check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i)
+        //     }
+        //     console.log(arr);
+
+        //     const picker = document.querySelectorAll('.date1');
+
+        //     for (pick of picker) {
+        //         pick.addEventListener('input', function(e) {
+        //             let x = this.value
+        //             if (arr.includes(x)) {
+        //                 e.preventDefault();
+        //                 this.value = '';
+        //                 alert('Room is reserved from ' + check_in_date + " to " + check_out_date);
+        //             }
+        //         });
+        //     }
+
+        // }
     </script>
     <!-- JS -->
     <script src="<?php echo URLROOT; ?>/assets/vendor/jquery/jquery.min.js"></script>

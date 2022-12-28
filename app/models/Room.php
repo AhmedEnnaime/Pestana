@@ -302,7 +302,7 @@ class Room
         try {
             $this->db->query("SELECT * FROM reservation WHERE room_id = :room_id");
             $this->db->bind(':room_id', $data['room_id']);
-            $row = $this->db->single();
+            $row = $this->db->resultSet();
             return $row;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
