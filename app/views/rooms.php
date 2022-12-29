@@ -19,6 +19,7 @@
  			</div>
  			<?php flash('room_success'); ?>
  			<?php flash('room_message'); ?>
+ 			<?php flash('update_success'); ?>
  			<div class="col-md-12">
  				<div class="card">
  					<div class="card-header">
@@ -125,7 +126,7 @@
  											<td><?php echo $room->price; ?></td>
 
  											<td>
- 												<!-- Button trigger for login form modal -->
+
  												<a href="<?php echo URLROOT; ?>/rooms/update/<?php echo $room->id; ?>"><button type="submit" style="width: 75px;" class="btn btn-primary">Update</button></a>
 
  											</td>

@@ -373,80 +373,10 @@
 
                                             <!-- Button trigger for login form modal -->
                                             <td>
-                                                <form action="" method="POST">
-                                                    <button type="button" style="width: 75px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inlineForm">
-                                                        Update
-                                                    </button>
-                                                </form>
+                                                <a href="<?php echo URLROOT; ?>/employees/update/<?php echo $employee->id; ?>"><button type="submit" style="width: 75px;" class="btn btn-primary">Update</button></a>
+
+
                                             </td>
-
-
-
-                                            <!--login form Modal -->
-                                            <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel33">Update room </h4>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <form action="<?php echo URLROOT; ?>/rooms/update/<?php echo $data['id']; ?>" method="POST" enctype="multipart/form-data">
-                                                            <div class="modal-body">
-                                                                <label>Num: </label>
-                                                                <div class="form-group">
-                                                                    <input name="num" type="number" placeholder="Room num" class="form-control <?php echo (!empty($data['num_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['num']; ?>">
-                                                                    <span class="invalid-feedback"><?php echo $data['num_err'];  ?></span>
-                                                                </div>
-                                                                <label>Capacity: </label>
-                                                                <div class="form-group">
-                                                                    <input name="capacity" type="number" placeholder="Capacity" class="form-control <?php echo (!empty($data['capacity_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['capacity']; ?>">
-                                                                    <span class="invalid-feedback"><?php echo $data['capacity_err'];  ?></span>
-                                                                </div>
-                                                                <label>Price: </label>
-                                                                <div class="form-group">
-                                                                    <input name="price" type="number" placeholder="Price" class="form-control <?php echo (!empty($data['price_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['price']; ?>">
-                                                                    <span class="invalid-feedback"><?php echo $data['price_err'];  ?></span>
-                                                                </div>
-                                                                <label>Type: </label>
-                                                                <div class="form-group">
-                                                                    <select class="form-control <?php echo (!empty($data['type_err'])) ? 'is-invalid' : ''; ?>" name="type" id="room_type">
-                                                                        <option value="">Select type</option>
-                                                                        <option value="single">single</option>
-                                                                        <option value="double">double</option>
-                                                                        <option value="suite">suite</option>
-                                                                    </select>
-                                                                    <span class="invalid-feedback"><?php echo $data['type_err'];  ?></span>
-
-                                                                </div>
-                                                                <label class="suite_type">Suite type: </label>
-                                                                <div class="form-group">
-                                                                    <select class="form-control <?php echo (!empty($data['suite_type_err'])) ? 'is-invalid' : ''; ?> suite_type" name="suite_type" id="suite_type">
-                                                                        <option value="">Select suite type</option>
-                                                                        <option value="Standard suite rooms">Standard suite rooms</option>
-                                                                        <option value="Junior">Junior</option>
-                                                                        <option value="Presidential suite">Presidential suite</option>
-                                                                        <option value="Honeymoon suites">Honeymoon suites</option>
-                                                                        <option value="Bridal suites">Bridal suites</option>
-                                                                    </select>
-                                                                    <span class="invalid-feedback"><?php echo $data['suite_type_err'];  ?></span>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">Close</span>
-                                                                </button>
-                                                                <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
-                                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">Update</span>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
 
                                             </td>
                                             <td>

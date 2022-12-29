@@ -400,9 +400,8 @@ class Room
                 $this->db->query("SELECT * FROM reservation ORDER BY id DESC LIMIT 1");
                 $row = $this->db->single();
                 if ($this->db->execute()) {
-                    //die(print_r($row));
-                    $this->db->query("INSERT INTO guests (name,birthday,reservation_id,user_id) VALUES(:name,:birthday,:reservation_id,:user_id)");
                     for ($i = 0; $i < $data['persons_num']; $i++) {
+                        $this->db->query("INSERT INTO guests (name,birthday,reservation_id,user_id) VALUES(:name,:birthday,:reservation_id,:user_id)");
                         $this->db->bind(':name', $data['name'][$i]);
                         $this->db->bind(':birthday', $data['birthday'][$i]);
                         $this->db->bind(':reservation_id', $row->id);

@@ -125,15 +125,17 @@ class Rooms extends Controller
                 'price' => trim($_POST['price']),
                 'type' => trim($_POST['type']),
                 'suite_type' => trim($_POST['suite_type']),
+                'media' => $_FILES['media']['name'],
                 'num_err' => '',
                 'capacity_err' => '',
                 'price_err' => '',
                 'type_err' => '',
                 'suite_type_err' => '',
+                'media_err' => '',
             ];
 
             // Validation Form
-            die(print('dcde'));
+            //die(print('dcde'));
             if (empty($data['num'])) {
                 $data['num_err'] = 'Please enter num';
             }
@@ -154,8 +156,12 @@ class Rooms extends Controller
                 $data['suite_type_err'] = 'Please enter your suite type';
             }
 
+            if (empty($data['media'])) {
+                $data['media_err'] = 'Please upload images';
+            }
 
-            if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err'])) {
+
+            if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err']) && empty($data['media_err'])) {
 
                 if ($this->roomModel->update($data)) {
                     flash('update_success', 'Room updated');
@@ -181,11 +187,13 @@ class Rooms extends Controller
                 'price' => $room->price,
                 'type' => $room->type,
                 'suite_type' => $room->suite_type,
+                'media' => $room->media,
                 'num_err' => '',
                 'capacity_err' => '',
                 'price_err' => '',
                 'type_err' => '',
                 'suite_type_err' => '',
+                'media_err' => '',
             ];
 
             $this->view('update', $data);

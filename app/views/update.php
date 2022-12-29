@@ -19,8 +19,6 @@
             <div class="content-header">
                 <h1>Update room</h1>
             </div>
-            <?php print_r($data); ?>
-            <!--login form Modal -->
             <form action="<?php echo URLROOT; ?>/rooms/update/<?php echo $data['id']; ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <label>Num: </label>
