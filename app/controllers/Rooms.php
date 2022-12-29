@@ -63,14 +63,10 @@ class Rooms extends Controller
             if (empty($data['num_err']) && empty($data['capacity_err']) && empty($data['price_err']) && empty($data['type_err']) && empty($data['media_err'])) {
 
                 if ($this->roomModel->add($data)) {
-                    foreach ($_FILES['img']['name'] as $key => $error) {
-                        if ($error == UPLOAD_ERR_OK) {
-                            $file = basename($_FILES['media']['name'][$key]);
-                            $folder = './assets/images/uploads/' . $file;
-                            $fileTmp = $_FILES['media']['tmp_name'][$key];
-                            move_uploaded_file($fileTmp, $folder);
-                        }
-                    }
+                    $file = $_FILES['media']['name'];
+                    $folder = './assets/images/uploads/' . $file;
+                    $fileTmp = $_FILES['media']['tmp_name'];
+                    move_uploaded_file($fileTmp, $folder);
                     flash('room_success', 'Room added');
                     redirect('rooms/rooms');
                 } else {

@@ -108,7 +108,7 @@
         <div class="gallery">
           <?php foreach ($data['rooms'] as $room) : ?>
             <div class="room">
-              <img src="<?php echo URLROOT; ?>/assets/images/client_img//bed-bedroom-1.jpg" alt="">
+              <img src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $room->media; ?>" alt="">
               <div class="room-text-container">
                 <div class="booking">
                   <p class="room__type"><?php echo $room->type; ?><?php if ($room->type == 'suite') {
@@ -129,7 +129,7 @@
                   <?php
 
                               } ?>" method="GET">
-                  <input type="submit" class="booking-btn" value="Book">
+                  <input style="margin-bottom: 20px;" type="submit" class="booking-btn" value="Book">
 
                 </form>
                 <?php

@@ -82,7 +82,7 @@
  												</div>
  												<label>Images: </label>
  												<div class="form-group">
- 													<input name="media[]" type="file" placeholder="Images" class="form-control <?php echo (!empty($data['media_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['media']; ?>" multiple>
+ 													<input name="media" type="file" placeholder="Images" class="form-control <?php echo (!empty($data['media_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['media']; ?>">
  													<span class="invalid-feedback"><?php echo $data['media_err'];  ?></span>
  												</div>
  											</div>

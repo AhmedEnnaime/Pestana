@@ -75,11 +75,10 @@
 
 
     <div class="main">
-
         <div class="container">
             <div class="booking-content">
                 <div class="booking-image">
-                    <img height="100%" width="100%" class="booking-img" src="<?php echo URLROOT; ?>/assets/images/client_img/bed-bedroom-1.jpg" alt="Booking Image">
+                    <img class="booking-img" src="<?php echo URLROOT; ?>/assets/images/uploads/<?php echo $data['room']->media; ?>" alt="Booking Image">
                 </div>
                 <div class="booking-form">
                     <form action="<?php echo URLROOT; ?>/rooms/book/<?php echo $data['room']->id; ?>" id="booking-form" method="POST">
@@ -159,12 +158,12 @@
 
                 let check_in_date = new Date(inf['debut_date']).toISOString().split('T')[0];
                 let check_out_date = new Date(inf['final_date']).toISOString().split('T')[0];
-
                 let check_in_day = check_in_date.split("-")[2];
                 let check_in_month = check_in_date.split("-")[1];
                 let check_in_year = check_in_date.split("-")[0];
                 let start = check_in_date.split("-")[2]
                 let end = check_out_date.split("-")[2]
+
                 for (let i = start; i <= end; i++) {
                     if (i < 10 && i > start) {
                         let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + "0" + i;
@@ -175,6 +174,8 @@
                         arr.push(u);
                     }
                 }
+
+                console.log(arr);
 
             }
 
