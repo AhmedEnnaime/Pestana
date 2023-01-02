@@ -2,6 +2,7 @@
 
 class Employees extends Controller
 {
+    public $employeeModel;
 
     public function __construct()
     {

@@ -2,6 +2,8 @@
 
 class Users extends Controller
 {
+    public $roomModel;
+    public $userModel;
 
     public function __construct()
     {

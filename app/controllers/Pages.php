@@ -1,6 +1,7 @@
 <?php
 class Pages extends Controller
 {
+  public $roomModel;
   public function __construct()
   {
     $this->roomModel = $this->model('Room');

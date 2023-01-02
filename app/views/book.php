@@ -153,6 +153,11 @@
         let info = JSON.parse(reservation0bj);
         let date_arr = [];
         let arr = [];
+
+        function daysInMonth(month, year) {
+            return new Date(year, month, 0).getDate();
+        }
+
         if (info.length != 0) {
             for (inf of info) {
 
@@ -163,8 +168,12 @@
                 let check_in_year = check_in_date.split("-")[0];
                 let start = check_in_date.split("-")[2]
                 let end = check_out_date.split("-")[2]
+                console.log(daysInMonth(check_in_month, check_in_year))
+                console.log(check_in_date);
+                // const numDays = new Date(check_in_date.getFullYear(), check_in_date.getMonth() + 1, 0).getDate();
+                // console.log(numDays);
 
-                for (let i = start; i <= end; i++) {
+                for (i = start; i < end; i++) {
                     if (i < 10 && i > start) {
                         let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + "0" + i;
                         arr.push(u);
@@ -174,6 +183,7 @@
                         arr.push(u);
                     }
                 }
+
 
                 console.log(arr);
 

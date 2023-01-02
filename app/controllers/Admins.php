@@ -3,6 +3,10 @@
 class Admins extends Controller
 {
 
+    public $userModel;
+    public $employeeModel;
+    public $roomModel;
+
     public function __construct()
     {
         if (!isLoggedIn()) {

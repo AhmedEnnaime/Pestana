@@ -2,6 +2,7 @@
 
 class Rooms extends Controller
 {
+    public $roomModel;
 
     public function __construct()
     {
