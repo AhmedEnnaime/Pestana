@@ -310,7 +310,7 @@ class Room
     public function filterByDate($data)
     {
         try {
-            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL;");
+            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date OR (:debut_date <= res.debut_date AND :final_date >= res.final_date)) WHERE res.room_id IS NULL;");
             $this->db->bind(":debut_date", $data['debut_date']);
             $this->db->bind(":final_date", $data['final_date']);
             return $this->db->resultSet();
@@ -322,7 +322,7 @@ class Room
     public function filterByDateCount($data)
     {
         try {
-            $this->db->query("SELECT COUNT(*) as total FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL;");
+            $this->db->query("SELECT COUNT(*) as total FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date OR (:debut_date <= res.debut_date AND :final_date >= res.final_date)) WHERE res.room_id IS NULL;");
             $this->db->bind(":debut_date", $data['debut_date']);
             $this->db->bind(":final_date", $data['final_date']);
             $row = $this->db->single();
@@ -335,7 +335,7 @@ class Room
     public function filterByDateAndType($data)
     {
         try {
-            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = :type;");
+            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date OR (:debut_date <= res.debut_date AND :final_date >= res.final_date)) WHERE res.room_id IS NULL AND r.type = :type;");
             $this->db->bind(":debut_date", $data['debut_date']);
             $this->db->bind(":final_date", $data['final_date']);
             $this->db->bind(":type", $data['type']);
@@ -348,7 +348,7 @@ class Room
     public function filterByDateAndTypeCount($data)
     {
         try {
-            $this->db->query("SELECT COUNT(*) as total FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = :type;");
+            $this->db->query("SELECT COUNT(*) as total FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date OR (:debut_date <= res.debut_date AND :final_date >= res.final_date)) WHERE res.room_id IS NULL AND r.type = :type;");
             $this->db->bind(":debut_date", $data['debut_date']);
             $this->db->bind(":final_date", $data['final_date']);
             $this->db->bind(":type", $data['type']);
@@ -362,7 +362,7 @@ class Room
     public function filterByAll($data)
     {
         try {
-            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = 'suite' AND r.suite_type = :suite_type;");
+            $this->db->query("SELECT r.* FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date OR (:debut_date <= res.debut_date AND :final_date >= res.final_date)) WHERE res.room_id IS NULL AND r.type = 'suite' AND r.suite_type = :suite_type;");
             $this->db->bind(":debut_date", $data['debut_date']);
             $this->db->bind(":final_date", $data['final_date']);
             $this->db->bind(":suite_type", $data['suite_type']);
@@ -375,7 +375,7 @@ class Room
     public function filterByAllCount($data)
     {
         try {
-            $this->db->query("SELECT COUNT(*) FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date) WHERE res.room_id IS NULL AND r.type = 'suite' AND r.suite_type = :suite_type;");
+            $this->db->query("SELECT COUNT(*) FROM room r LEFT JOIN reservation res ON r.id = res.room_id AND(:debut_date BETWEEN res.debut_date AND res.final_date OR :final_date BETWEEN res.debut_date AND res.final_date OR (:debut_date <= res.debut_date AND :final_date >= res.final_date)) WHERE res.room_id IS NULL AND r.type = 'suite' AND r.suite_type = :suite_type;");
             $this->db->bind(":debut_date", $data['debut_date']);
             $this->db->bind(":final_date", $data['final_date']);
             $this->db->bind(":suite_type", $data['suite_type']);
