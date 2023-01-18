@@ -168,35 +168,17 @@
                 let check_in_year = check_in_date.split("-")[0];
                 let start = check_in_date.split("-")[2]
                 let end = check_out_date.split("-")[2]
-                if (start > end) {
-                    let m = (daysInMonth(check_in_month, check_in_year) - start) + end;
-                    for (i = 0; i < m; i++) {
-                        if (i < 10) {
-                            let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + "0" + i;
-                            arr.push(u);
 
-                        } else {
-                            let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i;
-                            arr.push(u);
-                        }
+                for (i = start; i < end; i++) {
+                    if (i < 10 && i > start) {
+                        let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + "0" + i;
+                        arr.push(u);
+
+                    } else {
+                        let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i;
+                        arr.push(u);
                     }
-
-
-                } else {
-                    for (i = start; i < end; i++) {
-                        if (i < 10 && i > start) {
-                            let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + "0" + i;
-                            arr.push(u);
-
-                        } else {
-                            let u = check_in_date.split("-")[0] + "-" + check_in_date.split("-")[1] + "-" + i;
-                            arr.push(u);
-                        }
-                    }
-
                 }
-
-
 
                 console.log(arr);
 
